@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sign-Up
+{% endblock %}
+
+{% block heading %}
+Sign Up
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('signup')}}" method="POST" style="padding:5px;">
+    <!-- Full Name Field -->
+    {{ form.name_of_company.label }}: <br>
+    {{ form.name_of_company }}
+    <br>
+    {% if form.name_of_company.errors %}
+    {% for error in form.name_of_company.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- State Field -->
+    {{ form.state.label }}: <br>
+    {{ form.state }}
+    <br>
+    {% if form.state.errors %}
+    {% for error in form.state.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- City Field -->
+    {{ form.city.label }}: <br>
+    {{ form.city }}
+    <br>
+    {% if form.city.errors %}
+    {% for error in form.city.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Stakeholder type Field -->
+    {{ form.stakeholder_type.label }}: <br>
+    {{ form.stakeholder_type }}
+    <br>
+    {% if form.stakeholder_type.errors %}
+    {% for error in form.stakeholder_type.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Contact Number Field -->
+    {{ form.contact_number.label }}: <br>
+    {{ form.contact_number }}
+    <br>
+    {% if form.contact_number.errors %}
+    {% for error in form.contact_number.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- address Field -->
+    {{ form.address.label }}: <br>
+    {{ form.address }}
+    <br>
+    {% if form.address.errors %}
+    {% for error in form.address.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+
+    <!-- Email Field -->
+    {{ form.email.label }}: <br>
+    {{ form.email }}
+    <br>
+    {% if form.email.errors %}
+    {% for error in form.email.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Password Field -->
+    {{ form.password.label }}: <br>
+    {{ form.password }}
+    <br>
+    {% if form.password.errors %}
+    {% for error in form.password.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+    <!-- Confirm Password Field -->
+    {{ form.confirm_password.label }}: <br>
+    {{ form.confirm_password }}
+    <br>
+    {% if form.confirm_password.errors %}
+    {% for error in form.confirm_password.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.year_of_estab.label }}: <br>
+    {{ form.year_of_estab }}
+    <br>
+    {% if form.year_of_estab.errors %}
+    {% for error in form.year_of_estab.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.annual_turnover.label }}: <br>
+    {{ form.annual_turnover }}
+    <br>
+    {% if form.annual_turnover.errors %}
+    {% for error in form.annual_turnover.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.employee_strength.label }}: <br>
+    {{ form.employee_strength }}
+    <br>
+    {% if form.employee_strength.errors %}
+    {% for error in form.employee_strength.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- poc1_name Field -->
+    {{ form.poc1_name.label }}: <br>
+    {{ form.poc1_name }}
+    <br>
+    {% if form.poc1_name.errors %}
+    {% for error in form.poc1_name.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.poc1_contact_number.label }}: <br>
+    {{ form.poc1_contact_number }}
+    <br>
+    {% if form.poc1_contact_number.errors %}
+    {% for error in form.poc1_contact_number.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- poc1_email Field -->
+    {{ form.poc1_email.label }}: <br>
+    {{ form.poc1_email }}
+    <br>
+    {% if form.poc1_email.errors %}
+    {% for error in form.poc1_email.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.poc1_designation.label }}: <br>
+    {{ form.poc1_designation }}
+    <br>
+    {% if form.poc1_designation.errors %}
+    {% for error in form.poc1_designation.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- poc2_name Field -->
+    {{ form.poc2_name.label }}: <br>
+    {{ form.poc2_name }}
+    <br>
+    {% if form.poc2_name.errors %}
+    {% for error in form.poc2_name.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+    {{ form.poc2_contact_number.label }}: <br>
+    {{ form.poc2_contact_number }}
+    <br>
+    {% if form.poc2_contact_number.errors %}
+    {% for error in form.poc2_contact_number.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+    <!-- poc1_email Field -->
+    {{ form.poc2_email.label }}: <br>
+    {{ form.poc2_email }}
+    <br>
+    {% if form.poc2_email.errors %}
+    {% for error in form.poc2_email.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+    {{ form.poc2_designation.label }}: <br>
+    {{ form.poc2_designation }}
+    <br>
+    {% if form.poc2_designation.errors %}
+    {% for error in form.poc2_designation.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}
