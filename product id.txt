@@ -1,0 +1,11 @@
+product id
+cost price per unit
+number of fabric
+fabric type dropdown
+weight of fabric 1
+weight of waste from fabric 1
+weight of fabric 2
+weight of waste from fabric 2
+
+rest same
+

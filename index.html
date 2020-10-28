@@ -1,24 +1,225 @@
 <!doctype html>
 <html lang="en">
  
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/libs/css/style.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" href="assets/vendor/charts/chartist-bundle/chartist.css">
-    <link rel="stylesheet" href="assets/vendor/charts/morris-bundle/morris.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-    <title>Collatz - A Sustainability Dashboard</title>
-</head>
-
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/libs/css/style.css">
+        <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="assets/vendor/charts/chartist-bundle/chartist.css">
+        <link rel="stylesheet" href="assets/vendor/charts/morris-bundle/morris.css">
+        <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css">
+        <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+        <title>Collatz - A Sustainability Dashboard</title>
+    </head>
+    
 <body>
+    <!-- Warehouse modal -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    
+                    
+                        <h5 class="card-header">Raw Material | Warehouse</h5>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                        <label for="input-select1">Seller Information</label>
+                                        <select class="form-control" id="input-select1">
+                                            <option>ABC Surat</option>
+                                        </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select2">Type of Fabric</label>
+                                    <select class="form-control" id="input-select2">
+                                        <option>Organic</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select3">Area of fabric (square metre)</label>
+                                    <input id="input-select3" type="number" class="form-control" placeholder="100">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select7">Weight of fabric</label>
+                                    <input id="input-select7" type="number" class="form-control" placeholder="1000kg">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-select4">Cost per unit (INR)</label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="INR 100">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-select5">Rebate Percentage</label>
+                                    <input id="input-select5" type="number" class="form-control" placeholder="12.5">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select6">Product ID</label>
+                                    <select class="form-control" id="input-select6">
+                                        <option>P23451</option>
+                                    </select>
+                                </div>
+
+                                <!-- <div class="form-group">
+                                    <label for="input-select7">Number of fabric used</label>
+                                    <select class="form-control" id="input-select7">
+                                        <option>3</option>
+                                    </select>
+                                </div> -->
+
+                                
+
+                                    
+                                                                   
+                            </form>
+                        </div>
+
+                        <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
+                
+                        
+                    
+                </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <!-- End warehouse modal -->
+
+      <!-- start of finished goods -->
+      <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    
+                    
+                        <h5 class="card-header">Finished Goods | Warehouse</h5>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="input-select1">Product ID</label>
+                                    <input id="input-select1" type="number" class="form-control" placeholder="A2938">
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="input-select1">Units sold</label>
+                                    <input id="input-select1" type="number" class="form-control" placeholder="1000">
+
+                                </div>
+
+                                <!-- <div class="form-group">
+                                    <label for="input-select2"> Cost per unit</label>
+                                    <input id="input-select2" type="number" class="form-control" placeholder="5000">
+
+                                </div> -->
+
+                                <div class="form-group">
+                                    <label for="input-select3">Sold To</label>
+                                    <input id="input-select3" type="number" class="form-control" placeholder="myntra">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select4">Selling Price/unit</label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
+
+                                </div>
+                                    
+                                                                   
+                            </form>
+                        </div>
+
+                        <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
+                
+                        
+                    
+                </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <!-- end of finished goods -->
+      <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    
+                    
+                        <h5 class="card-header">Inventory Produced</h5>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="input-select1">Product ID</label>
+                                    <input id="input-select1" type="number" class="form-control" placeholder="ABC Surat">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select2">Number of fabric</label>
+                                    <input id="input-select2" type="number" class="form-control" placeholder="10">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select3">Fabric type details</label>
+                                    <select class="form-control" id="input-select3">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select4"></label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
+
+                                </div>
+                                    
+                                                                   
+                            </form>
+                        </div>
+
+                        <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
+                
+                        
+                    
+                </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -29,9 +230,22 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="index.html">Collatz</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
+
+                <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 70%;"  aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".bd-example-modal-lg">Warehouse Details</button>
+                
+                
+                
+                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1%;" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Transaction Details</button>
+                
+                <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90%;">
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".finishedgoods">Finished Goods</a>
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".inventory">Inventory Produced</a>
+                    
+                </div>
+                
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
