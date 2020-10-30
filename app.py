@@ -179,6 +179,14 @@ def fibres_list():
     owner_company = user_in_session.name_of_company
     return render_template("fibres_list.html", fibres = fibres, owner_company = owner_company)
 
+@app.route('/index')
+def index():
+    return render_template("index.html")
+
+@app.route('/leaderboard')
+def leaderboard():
+    return render_template("leaderboard.html")
+
 # def add_fabric():
 #     user_in_session = RawFibre.query.get(session['user'])
 #     form = FabricProducedForm(user_in_session)
