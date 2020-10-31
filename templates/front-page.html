@@ -84,6 +84,10 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h5 class="card-header">Login</h5>
                                     <div class="card-body">
+                        {%if message_login%}
+                        {{message_login}}
+                        <br>
+                        {%endif%}
                         {% if form_login %}
                         <form action="{{url_for('login')}}" method="POST">
 

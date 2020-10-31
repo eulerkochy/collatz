@@ -46,7 +46,7 @@ def signup():
         db.session.add(new_user)
         
         if User.query.filter_by(email = form.email.data).first():
-            return render_template("front-page.html", form = form, message = "This Email already exists in the system! Please Login instead.")
+            return render_template("front-page.html#nav-home", form = form, message_signup = "This Email already exists in the system! Please Login instead.")
 
 
         try:
@@ -54,13 +54,13 @@ def signup():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("front-page.html", form = form, message = "Error.")
+            return render_template("front-page.html#nav-home", form = form, message_signup = "Error.")
         finally:
             db.session.close()
         return render_template("index.html")
     elif form.errors:
         print(form.errors.items())
-    return render_template("front-page.html", form = form)
+    return render_template("front-page.html#nav-home", form = form)
 
 
 
@@ -114,15 +114,15 @@ def login():
         print(user)
         
         if user is None:
-            return render_template("front-page.html", form = form_login, message = "Email id not registered")
+            return render_template("front-page.html", form_login = form_login, message_login = "Email id not registered")
         elif user.password != form_login.password.data:
-            return render_template("front-page.html", form = form_login, message = "Incorrect password")
+            return render_template("front-page.html", form_login = form_login, message_login = "Incorrect password")
         else:
             session['user'] = user.email
-            return render_template("index.html", message = "Successfully Logged In!")
+            return render_template("index.html", message_login = "Successfully Logged In!")
     elif form_login.errors:
         print(form_login.errors.items())
-    return render_template("front-page.html", form = form_login)
+    return render_template("front-page.html", form_login = form_login)
 
 @app.route("/logout")
 def logout():
@@ -232,27 +232,27 @@ def fabric_produced_list():
 @app.route('/transaction_with_garment_assembler', methods = ['POST', 'GET'])
 def transaction_with_garment_assembler():
     user_in_session = FabricManufacturer.query.get(session['user'])
-    form = TransactionWithGarmentAssemblerForm()
+    form_garment = TransactionWithGarmentAssemblerForm()
     
-    if form.validate_on_submit():
+    if form_garment.validate_on_submit():
         new_transaction = TransactionWithGarmentAssembler(
-            fabric_id = form.fabric_id.data,
-            fabric = FabricProduced.query.get(form.fabric_id.data),
-            area = form.area.data,
-            weight = form.weight.data,
+            fabric_id = form_garment.fabric_id.data,
+            fabric = FabricProduced.query.get(form_garment.fabric_id.data),
+            area = form_garment.area.data,
+            weight = form_garment.weight.data,
             sold_by = session['user'],
-            sold_to = form.sold_to.data,
-            selling_price_per_unit = form.selling_price_per_unit.data,
-            rebate = form.rebate.data        
+            sold_to = form_garment.sold_to.data,
+            selling_price_per_unit = form_garment.selling_price_per_unit.data,
+            rebate = form_garment.rebate.data        
         )
         
         fabric = new_transaction.fabric
         if not fabric:
-            return render_template("transaction_with_garment_assembler.html", form = form, message = "Invalid fabric ID")
-        elif fabric.weight_in_inventory < form.weight.data:
-            return render_template("transaction_with_garment_assembler.html", form = form, message = "Quantity sold larger than that in inventory")
+            return render_template("index.html", form = form_garment, message = "Invalid fabric ID")
+        elif fabric.weight_in_inventory < form_garment.weight.data:
+            return render_template("index.html", form = form_garment, message = "Quantity sold larger than that in inventory")
         else:
-            fabric.weight_in_inventory -= float(form.weight.data)
+            fabric.weight_in_inventory -= float(form_garment.weight.data)
         
         db.session.add(new_transaction)
         user_in_session.transactions_with_garment_assembler.append(new_transaction)
@@ -262,15 +262,15 @@ def transaction_with_garment_assembler():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("transaction_with_garment_assembler.html", form = form, message = "Error.")
+            return render_template("index.html", form = form_garment, message = "Error.")
         finally:
             db.session.close()
 
-        return render_template("transaction_with_garment_assembler.html", message = "Successfully added transaction, id =" + str(transaction_id))
+        return render_template("index.html", message = "Successfully added transaction, id =" + str(transaction_id))
 
-    elif form.errors:
-        print(form.errors.items())
-    return render_template("transaction_with_garment_assembler.html", form = form)
+    elif form_garment.errors:
+        print(form_garment.errors.items())
+    return render_template("index.html", form = form_garment)
 
 @app.route('/transaction_with_garment_assembler_list')
 def transaction_with_garment_assembler_list():
