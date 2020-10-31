@@ -183,7 +183,7 @@
                             <form  action="{{url_for('garment_produced')}}" method="POST">
                                 <div class="form-group">
                                     {{ form_garment.garment_name.label }}: 
-                                    {{ form_garment.garment_name }}
+                                    {{ form_garment.garment_name(class="form-control") }}
                                     {% if form_garment.garment_name.errors %}
                                     {% for error in form_garment.garment_name.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -193,7 +193,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.number_fabrics_used.label }}: 
-                                    {{ form_garment.number_fabrics_used }}
+                                    {{ form_garment.number_fabrics_used(class="form-control") }}
                                     {% if form_garment.number_fabrics_used.errors %}
                                     {% for error in form_garment.number_fabrics_used.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -203,7 +203,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.fabric1_id.label }}: 
-                                    {{ form_garment.fabric1_id }}
+                                    {{ form_garment.fabric1_id(class="form-control") }}
                                     {% if form_garment.fabric1_id.errors %}
                                     {% for error in form_garment.fabric1_id.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -213,7 +213,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.fabric1_weight_used.label }}: 
-                                    {{ form_garment.fabric1_weight_used }}
+                                    {{ form_garment.fabric1_weight_used(class="form-control") }}
                                     {% if form_garment.fabric1_weight_used.errors %}
                                     {% for error in form_garment.fabric1_weight_used.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -223,7 +223,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.fabric1_weight_wasted.label }}: <br>
-                                    {{ form_garment.fabric1_weight_wasted }}
+                                    {{ form_garment.fabric1_weight_wasted(class="form-control") }}
                                     <br>
                                     {% if form_garment.fabric1_weight_wasted.errors %}
                                     {% for error in form_garment.fabric1_weight_wasted.errors %}
@@ -235,7 +235,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.fabric2_id.label }}: 
-                                    {{ form_garment.fabric2_id }}
+                                    {{ form_garment.fabric2_id(class="form-control") }}
                                     {% if form_garment.fabric2_id.errors %}
                                     {% for error in form_garment.fabric2_id.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -245,7 +245,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.fabric2_weight_used.label }}: 
-                                    {{ form_garment.fabric2_weight_used }}
+                                    {{ form_garment.fabric2_weight_used(class="form-control") }}
                                     {% if form_garment.fabric2_weight_used.errors %}
                                     {% for error in form_garment.fabric2_weight_used.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -255,7 +255,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.fabric2_weight_wasted.label }}: 
-                                    {{ form_garment.fabric2_weight_wasted }}
+                                    {{ form_garment.fabric2_weight_wasted(class="form-control") }}
                                     {% if form_garment.fabric2_weight_wasted.errors %}
                                     {% for error in form_garment.fabric2_weight_wasted.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -265,7 +265,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.trimming_technique.label }}: 
-                                    {{ form_garment.trimming_technique }}
+                                    {{ form_garment.trimming_technique(class="form-control") }}
                                     {% if form_garment.trimming_technique.errors %}
                                     {% for error in form_garment.trimming_technique.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -275,7 +275,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.sewing_technique.label }}: 
-                                    {{ form_garment.sewing_technique }}
+                                    {{ form_garment.sewing_technique(class="form-control") }}
                                     {% if form_garment.sewing_technique.errors %}
                                     {% for error in form_garment.sewing_technique.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -285,7 +285,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.printing_technique.label }}: 
-                                    {{ form_garment.printing_technique }}
+                                    {{ form_garment.printing_technique(class="form-control") }}
                                     {% if form_garment.printing_technique.errors %}
                                     {% for error in form_garment.printing_technique.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -295,7 +295,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.chemical_finish.label }}: 
-                                    {{ form_garment.chemical_finish }}
+                                    {{ form_garment.chemical_finish(class="form-control") }}
                                     {% if form_garment.chemical_finish.errors %}
                                     {% for error in form_garment.chemical_finish.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -305,7 +305,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.screen_printing_or_heat_transfer.label }}: 
-                                    {{ form_garment.screen_printing_or_heat_transfer }}
+                                    {{ form_garment.screen_printing_or_heat_transfer(class="form-control") }}
                                     {% if form_garment.screen_printing_or_heat_transfer.errors %}
                                     {% for error in form_garment.screen_printing_or_heat_transfer.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -315,7 +315,7 @@
     
                                 <div class="form-group">
                                     {{ form_garment.quantity_produced.label }}: 
-                                    {{ form_garment.quantity_produced }}
+                                    {{ form_garment.quantity_produced(class="form-control") }}
                                     {% if form_garment.quantity_produced.errors %}
                                     {% for error in form_garment.quantity_produced.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -325,7 +325,7 @@
 
                                 <div class="form-group">
                                     {{ form_garment.production_cost_per_unit.label }}: 
-                                    {{ form_garment.production_cost_per_unit }}
+                                    {{ form_garment.production_cost_per_unit(class="form-control") }}
                                     {% if form_garment.production_cost_per_unit.errors %}
                                     {% for error in form_garment.production_cost_per_unit.errors %}
                                     <b style="color:tomato;"> {{ error }} </b>
@@ -334,15 +334,11 @@
                                 </div> 
                                 
                                 {{ form.csrf_token }}
-                                {{ form.submit }}
+                                {{ form.submit(class="btn btn-primary") }}
     
                             </form>
                             {% endif %}
                         </div>
-    
-                        <!-- <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false" -->
-                            style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
-    
     
     
                     </div>
@@ -375,7 +371,7 @@
                 <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1em;"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaction Details</button>
         
-                <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90%;">
+                <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90em;">
                     <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
                         data-target=".finishedgoods">Finished Goods</a>
                     <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"

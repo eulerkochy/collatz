@@ -46,7 +46,7 @@ def signup():
         db.session.add(new_user)
         
         if User.query.filter_by(email = form.email.data).first():
-            return render_template("front-page.html#nav-home", form = form, message_signup = "This Email already exists in the system! Please Login instead.")
+            return render_template("front-page.html", form = form, message_signup = "This Email already exists in the system! Please Login instead.")
 
 
         try:
@@ -54,13 +54,13 @@ def signup():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("front-page.html#nav-home", form = form, message_signup = "Error.")
+            return render_template("front-page.html", form = form, message_signup = "Error.")
         finally:
             db.session.close()
         return render_template("index.html")
     elif form.errors:
         print(form.errors.items())
-    return render_template("front-page.html#nav-home", form = form)
+    return render_template("front-page.html", form = form)
 
 
 
@@ -379,9 +379,9 @@ def garment_produced():
         fabric1 = new_garment.fabric1
         fabric2 = new_garment.fabric2
         if not fabric1 or not fabric2:
-            return render_template("garment_produced.html", form = form, message = "Invalid fabric ID")
+            return render_template("garment_produced.html", form_garment = form, message = "Invalid fabric ID")
         elif fabric1.weight_usable < form.fabric1_weight_used.data or fabric2.weight_usable < form.fabric2_weight_used.data:
-            return render_template("garment_produced.html", form = form, message = "Quantity used larger than that in inventory")
+            return render_template("garment_produced.html", form_garment = form, message = "Quantity used larger than that in inventory")
         else:
             fabric1.weight_usable = fabric1.weight_usable - float(form.fabric1_weight_used.data)
             fabric2.weight_usable = fabric2.weight_usable - float(form.fabric2_weight_used.data)
@@ -394,18 +394,20 @@ def garment_produced():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("garment_produced.html", form = form, message = "Error.")
+            return render_template("index.html", form_garment = form, message = "Error.")
         finally:
             db.session.close()
-        return render_template("garment_produced.html", message = "Successfully added garment, id ="+str(garment_id))
+        return render_template("index.html", message = "Successfully added garment, id ="+str(garment_id))
 
     elif form.errors:
         print(form.errors.items())
-    return render_template("garment_produced.html", form = form)
+    return render_template("index.html", form_garment = form)
 
 @app.route('/index')
 def index():
-    return render_template("index.html")
+    _form_garment = GarmentProducedForm()
+
+    return render_template("index.html", form_garment = _form_garment)
 
 @app.route('/leaderboard')
 def leaderboard():

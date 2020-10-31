@@ -70,7 +70,7 @@
     
     </div>
     <div class="modal fade bd-example-modal-lg" id="form1" role="dialog">
-        <div class="modal-dialog modal-lg mw-95 w-75">
+        <div class="modal-dialog modal-lg mw-95 w-80">
             <div class="modal-content">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -79,7 +79,7 @@
                     </div>
                 </nav>
                   <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="height: 20rem;">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="height: 25rem;">
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h5 class="card-header">Login</h5>
@@ -93,7 +93,7 @@
 
                             <div class="form-group">
                                 {{ form_login.email.label }}: 
-                                {{ form_login.email }}
+                                {{ form_login.email(class="form-control") }}
                                 {% if form_login.email.errors %}
                                 {% for error in form_login.email.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form_login.password.label }}:
-                                {{ form_login.password }}
+                                {{ form_login.password(class="form-control") }}
                                 {% if form_login.password.errors %}
                                 {% for error in form_login.password.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -113,7 +113,7 @@
                             </div>
                             <div class = "form-group">
                                 {{ form_login.type.label }}:
-                                {{ form_login.type }}
+                                {{ form_login.type(class="form-control") }}
                                 {% if form_login.type.errors %}
                                 {% for error in form_login.type.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -123,7 +123,7 @@
                             </div>
                             <!-- <button type="submit" class="btn btn-primary" style="margin-left: 0.5rem;margin-bottom: 2rem;">Submit</button> -->
                             {{ form_login.csrf_token }}
-                            {{ form_login.submit }}
+                            {{ form_login.submit(class="btn btn-primary") }}
                         </form>
                         {% endif %}
                             </div>
@@ -138,7 +138,7 @@
 
                             <div class="form-group">
                                 {{ form.name_of_company.label }}:
-                                {{ form.name_of_company }}
+                                {{ form.name_of_company(class="form-control") }}
                                 {% if form.name_of_company.errors %}
                                 {% for error in form.name_of_company.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -147,7 +147,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.stakeholder_type.label }}: 
-                                {{ form.stakeholder_type }}
+                                {{ form.stakeholder_type(class="form-control") }}
                                 {% if form.stakeholder_type.errors %}
                                 {% for error in form.stakeholder_type.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -156,7 +156,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.contact_number.label }}: 
-                                {{ form.contact_number }}
+                                {{ form.contact_number(class="form-control") }}
                                 {% if form.contact_number.errors %}
                                 {% for error in form.contact_number.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -165,7 +165,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.address.label }}: 
-                                {{ form.address }}
+                                {{ form.address(class="form-control") }}
                                 {% if form.address.errors %}
                                 {% for error in form.address.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -174,7 +174,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.email.label }}: 
-                                {{ form.email }}
+                                {{ form.email(class="form-control") }}
                                 {% if form.email.errors %}
                                 {% for error in form.email.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -183,7 +183,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.password.label }}: 
-                                {{ form.password }}
+                                {{ form.password(class="form-control") }}
                                 {% if form.password.errors %}
                                 {% for error in form.password.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.confirm_password.label }}: 
-                                {{ form.confirm_password }}
+                                {{ form.confirm_password(class="form-control") }}
                                 {% if form.confirm_password.errors %}
                                 {% for error in form.confirm_password.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -201,7 +201,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.year_of_estab.label }}: 
-                                {{ form.year_of_estab }}
+                                {{ form.year_of_estab(class="form-control") }}
                                 {% if form.year_of_estab.errors %}
                                 {% for error in form.year_of_estab.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -211,7 +211,7 @@
                             
                             <div class = "form-group">
                                 {{ form.annual_turnover.label }}: 
-                                {{ form.annual_turnover }}
+                                {{ form.annual_turnover(class="form-control") }}
                                 {% if form.annual_turnover.errors %}
                                 {% for error in form.annual_turnover.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -220,7 +220,7 @@
                             </div>
                             <div class = "form-group">
                                 {{ form.employee_strength.label }}: 
-                                {{ form.employee_strength }}
+                                {{ form.employee_strength(class="form-control") }}
                                 {% if form.employee_strength.errors %}
                                 {% for error in form.employee_strength.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -229,7 +229,7 @@
                             </div>
                             <div class="form-group">
                                 {{ form.poc1_name.label }}: 
-                                {{ form.poc1_name }}
+                                {{ form.poc1_name(class="form-control") }}
                                 {% if form.poc1_name.errors %}
                                 {% for error in form.poc1_name.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -238,7 +238,7 @@
                             </div>
                             <div class = "form-group">
                                 {{ form.poc1_contact_number.label }}: 
-                                {{ form.poc1_contact_number }}
+                                {{ form.poc1_contact_number(class="form-control") }}
                                 {% if form.poc1_contact_number.errors %}
                                 {% for error in form.poc1_contact_number.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -247,7 +247,7 @@
                             </div>
                             <div class = "form-group">
                                 {{ form.poc1_email.label }}: 
-                                {{ form.poc1_email }}
+                                {{ form.poc1_email(class="form-control") }}
                                 {% if form.poc1_email.errors %}
                                 {% for error in form.poc1_email.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -256,7 +256,7 @@
                             </div>
                             <div class = "form-group">
                                 {{ form.poc1_designation.label }}: 
-                                {{ form.poc1_designation }}
+                                {{ form.poc1_designation(class="form-control") }}
                                 {% if form.poc1_designation.errors %}
                                 {% for error in form.poc1_designation.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>
@@ -264,7 +264,7 @@
                                 {% endif %}
                             </div>
                             {{ form.csrf_token }}
-                            {{ form.submit }}
+                            {{ form.submit(class="btn btn-primary") }}
                         </form>
                         {% endif %}
                             </div>
