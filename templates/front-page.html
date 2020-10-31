@@ -136,9 +136,8 @@
                         <form action="{{url_for('signup')}}" method="POST">
 
                             <div class="form-group">
-                                {{ form.name_of_company.label }}: <br>
+                                {{ form.name_of_company.label }}:
                                 {{ form.name_of_company }}
-                                <br>
                                 {% if form.name_of_company.errors %}
                                 {% for error in form.name_of_company.errors %}
                                 <b style="color:tomato;"> {{ error }} </b>

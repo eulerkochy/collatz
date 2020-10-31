@@ -13,7 +13,9 @@ db.create_all()
 
 @app.route("/")
 def home():
-    return render_template("front-page.html")
+    _form = SignUpForm()
+    _form_login = LoginForm()
+    return render_template("front-page.html", form_login=_form_login, form=_form)
 
 @app.route("/signup", methods=["POST", "GET"])
 def signup():
