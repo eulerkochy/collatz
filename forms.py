@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, StringField, PasswordField, SubmitField, SelectField, IntegerField, TextAreaField, DecimalField, SelectMultipleField, FieldList, FormField 
+from wtforms import Form, StringField, PasswordField, SubmitField, SelectField, IntegerField, TextAreaField, DecimalField, BooleanField 
 from wtforms.validators import InputRequired, Email, EqualTo
 from fabric_manufacturer import RawFibre
 
@@ -16,8 +16,6 @@ class SignUpUserForm(FlaskForm):
 
 class SignUpForm(FlaskForm):
     name_of_company = StringField('Name of the Company', validators = [InputRequired()])
-    state = SelectField('State', choices = states, validators = [InputRequired()])
-    city = StringField('City', validators = [InputRequired()])
     stakeholder_type = SelectField('Organization Type', choices = ['Fabric Manufacturer', 'Garment Assembler', 'Retailer'], validators = [InputRequired()])
     contact_number = IntegerField('Contact Number', validators = [InputRequired()])
     address = TextAreaField('Address', validators = [InputRequired()])
@@ -33,11 +31,6 @@ class SignUpForm(FlaskForm):
     poc1_email = StringField('Email of POC1', validators = [InputRequired(), Email()])
     poc1_designation = StringField('Designation of POC1', validators = [InputRequired()])
 
-    poc2_name = StringField('Name of POC2', validators = [InputRequired()])
-    poc2_contact_number = IntegerField('Contact Number of POC2', validators = [InputRequired()])
-    poc2_email = StringField('Email of POC2', validators = [InputRequired(), Email()])
-    poc2_designation = StringField('Designation of POC2', validators = [InputRequired()])
-
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -46,7 +39,7 @@ class LoginForm(FlaskForm):
     type = SelectField('Type', choices = ['Fabric Manufacturer', 'Garment Assembler', 'Retailer', 'User'], validators = [InputRequired()])
     submit = SubmitField('Login')
 
-class FibreForm(FlaskForm):
+class InputFibreForm(FlaskForm):
     source_location = StringField('Location of origin of Fibre', validators = [InputRequired()])
     manufacturer = StringField('Manufacturer name', validators = [InputRequired()])
     contact_of_manufacturer = IntegerField('Contact number of manufacturer', validators = [InputRequired()])
@@ -55,34 +48,68 @@ class FibreForm(FlaskForm):
     cost_per_unit = DecimalField('Cost per unit (INR)', validators = [InputRequired()])
     rebate = DecimalField('Rebate', validators = [InputRequired()])
     type_of_fibre = SelectField('Type of fibre', choices = ['Organic', 'Inorganic'], validators = [InputRequired()])
-    submit = SubmitField('Add Fibre')
+    submit = SubmitField('Add Fibre to inventory')
 
-def selections(limit):
-    message = "Select "+limit+" fields"
-    def _selections(form, field):
-        l = field.data and len(field.data) or 0
-        if l!=limit:
-            raise ValidationError(message)
-    return _selections
+class FabricProducedForm(FlaskForm):
+    fabric_name = StringField("Fabric Name", validators = [InputRequired()])
+    number_fibres_used = IntegerField('Number of fibres used', validators = [InputRequired()])
+    fibre1_id = IntegerField('Fibre 1 ID', validators = [InputRequired()])
+    fibre1_weight_used = DecimalField('Weight of Fibre 1 used', validators = [InputRequired()])
+    fibre1_weight_wasted = DecimalField('Weight of Fibre 1 wasted', validators = [InputRequired()])
+    area = DecimalField('Area of fabric produced', validators = [InputRequired()])
+    weight = DecimalField('Weight of fabric produced', validators = [InputRequired()])
+    production_cost_per_unit = DecimalField('Production cost per unit area', validators = [InputRequired()])
+    submit = SubmitField('Add Fabric Produced')
 
-global count
+class TransactionWithGarmentAssemblerForm(FlaskForm):
+    fabric_id = IntegerField('Fabric Id', validators = [InputRequired()])
+    area = DecimalField('Area sold in sqaure meters', validators = [InputRequired()])
+    weight = DecimalField('Weight sold in kgs', validators = [InputRequired()])
+    sold_to = IntegerField('Buyer', validators = [InputRequired()])
+    selling_price_per_unit = DecimalField('Selling price per unit (INR)', validators = [InputRequired()])
+    rebate = DecimalField('Rebate', validators = [InputRequired()])
+    submit = SubmitField('Add transaction')
 
-class Quantities(Form):
-    quantity = IntegerField('Quantity of fibre', validators = [InputRequired()])
+class InputForm(FlaskForm):
+    transaction_id = IntegerField('Transaction ID', validators = [InputRequired()])
+    submit = SubmitField('Submit')
 
+class ConfirmInputForm(FlaskForm):
+    confirm = SubmitField('Confirm')
+    cancel = SubmitField('Cancel')
 
-# class FabricProducedForm(FlaskForm):
-#     number_fibres_used = IntegerField('Number of fibres used')
-#     # fibres_used = SelectMultipleField(
-#     #     'Fibre',
-#     #     choices = [
-#     #         (f.fibre, f.manufacturer, f.rowid) for f in user_in_session.fibres_owned
-#     #     ],
-#     #     validators = [InputRequired(), selections(number_fibres_used.data)]
-#     # )
-#     quantities_in_order = FieldList(
-#         FormField(Quantities),
-#         min_entries = number_fibres_used.data,
-#         max_entries = number_fibres_used.data
-#     )
-#     length_of_fabric = DecimalField('Length of fabric (meters)', validators = [InputRequired()])
+class GarmentProducedForm(FlaskForm):
+    garment_name = StringField('Name of garment', validators = [InputRequired()])
+    number_fabrics_used = IntegerField('Number of fabrics used', validators = [InputRequired()])
+    fabric1_id = IntegerField('Fabric 1 ID', validators = [InputRequired()])
+    fabric1_weight_used = DecimalField('Weight of Fabric 1 used', validators = [InputRequired()])
+    fabric1_weight_wasted = DecimalField('Weight of Fabric 1 wasted', validators = [InputRequired()])
+    fabric2_id = IntegerField('Fabric 2 ID', validators = [InputRequired()])
+    fabric2_weight_used = DecimalField('Weight of Fabric 2 used', validators = [InputRequired()])
+    fabric2_weight_wasted = DecimalField('Weight of Fabric 2 wasted', validators = [InputRequired()])
+    trimming_technique = StringField('Trimming technique', validators = [InputRequired()])
+    sewing_technique = StringField('Sewing Technique', validators = [InputRequired()])
+    printing_technique = StringField('Printing Technique', validators = [InputRequired()])
+    chemical_finish = StringField('Chemical Finish', validators = [InputRequired()])
+    screen_printing_or_heat_transfer = BooleanField('Screen printing or heat transfer label')
+    quantity_produced = IntegerField('Quantity produced', validators = [InputRequired()])
+    production_cost_per_unit = DecimalField('Production cost per piece', validators = [InputRequired()])
+    submit = SubmitField('Add garment produced')
+
+class TransactionWithRetailerForm(FlaskForm):
+    garment_id = IntegerField('Garment ID', validators = [InputRequired()])
+    quantity_sold = IntegerField('Quantity sold', validators = [InputRequired()])
+    sold_to = IntegerField('Buyer', validators = [InputRequired()])
+    selling_price_per_unit = DecimalField('Selling price per piece', validators = [InputRequired()])
+    rebate = DecimalField('Rebate', validators = [InputRequired()])
+    submit = SubmitField('Add transaction')
+
+class TransactionWithUserForm(FlaskForm):
+    garment_id = IntegerField('Garment ID', validators = [InputRequired()])
+    quantity_sold = IntegerField('Quantity sold', validators = [InputRequired()])
+    sold_to = IntegerField('Buyer', validators = [InputRequired()])
+    selling_price_per_unit = DecimalField('Selling price per piece', validators = [InputRequired()])
+    send_back = BooleanField('Will buyer return garment after use?', validators = [InputRequired()])
+    send_back_after_months = IntegerField('No. of months after which product will be returned')
+    packaging_info = StringField('Packaging information', validators = [InputRequired()])
+    submit = SubmitField('Submit')

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %} Fabrics {% endblock %}
+
+{% block heading %}
+Fabrics
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>fabric</th>
+        <th>number_fibres_used</th>
+        <th>fibre 1 id</th>
+        <th>fibre 1</th>
+        <th>type of fibre 1</th>
+        <th>weight of fibre1 used</th>
+        <th>weight of fibre1 wasted</th>
+        <th>area produced</th>
+        <th>weight produced</th>
+        <th>weight in inventory</th>
+        <th>production_cost_per_unit</th>
+    </tr>
+    {% if fabrics %}
+    {% for f in fabrics %}
+    <tr>
+        <td>{{ f.row_id }}</td>
+        <td>{{ f.fabric_name }}</td>
+        <td>{{ f.number_fibres_used }}</td>
+        <td>{{f.fibre1_id}}</td>
+        <td>{{f.fibre1.fibre}}</td>
+        <td>{{f.fibre1.type_of_fibre}}</td>
+        <td>{{f.fibre1_weight_used}}</td>
+        <td>{{f.fibre1_weight_wasted}}</td>
+        <td>{{f.area}}</td>
+        <td>{{f.weight}}</td>
+        <td>{{f.weight_in_inventory}}</td>
+        <td>{{f.production_cost_per_unit}}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

@@ -27,28 +27,6 @@ Sign Up
     {% endfor %}
     {% endif %}
 
-    <!-- State Field -->
-    {{ form.state.label }}: <br>
-    {{ form.state }}
-    <br>
-    {% if form.state.errors %}
-    {% for error in form.state.errors %}
-    <b style="color:tomato;"> {{ error }} </b>
-    <br>
-    {% endfor %}
-    {% endif %}
-
-    <!-- City Field -->
-    {{ form.city.label }}: <br>
-    {{ form.city }}
-    <br>
-    {% if form.city.errors %}
-    {% for error in form.city.errors %}
-    <b style="color:tomato;"> {{ error }} </b>
-    <br>
-    {% endfor %}
-    {% endif %}
-
     <!-- Stakeholder type Field -->
     {{ form.stakeholder_type.label }}: <br>
     {{ form.stakeholder_type }}
@@ -183,48 +161,6 @@ Sign Up
     <br>
     {% if form.poc1_designation.errors %}
     {% for error in form.poc1_designation.errors %}
-    <b style="color:tomato;"> {{ error }} </b>
-    <br>
-    {% endfor %}
-    {% endif %}
-
-    <!-- poc2_name Field -->
-    {{ form.poc2_name.label }}: <br>
-    {{ form.poc2_name }}
-    <br>
-    {% if form.poc2_name.errors %}
-    {% for error in form.poc2_name.errors %}
-    <b style="color:tomato;"> {{ error }} </b>
-    <br>
-    {% endfor %}
-    {% endif %}
-    
-    {{ form.poc2_contact_number.label }}: <br>
-    {{ form.poc2_contact_number }}
-    <br>
-    {% if form.poc2_contact_number.errors %}
-    {% for error in form.poc2_contact_number.errors %}
-    <b style="color:tomato;"> {{ error }} </b>
-    <br>
-    {% endfor %}
-    {% endif %}
-    
-    <!-- poc1_email Field -->
-    {{ form.poc2_email.label }}: <br>
-    {{ form.poc2_email }}
-    <br>
-    {% if form.poc2_email.errors %}
-    {% for error in form.poc2_email.errors %}
-    <b style="color:tomato;"> {{ error }} </b>
-    <br>
-    {% endfor %}
-    {% endif %}
-    
-    {{ form.poc2_designation.label }}: <br>
-    {{ form.poc2_designation }}
-    <br>
-    {% if form.poc2_designation.errors %}
-    {% for error in form.poc2_designation.errors %}
     <b style="color:tomato;"> {{ error }} </b>
     <br>
     {% endfor %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %} Garment produced {% endblock %}
+
+{% block heading %}
+Garment produced
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>garment_name</th>
+        <th>number_fabrics_used</th>
+        <th>fabric1_id</th>
+        <th>fabric1</th>
+        <th>fabric1_weight_used</th>
+        <th>fabric1_weight_wasted</th>
+        <th>fabric2_id</th>
+        <th>fabric2</th>
+        <th>fabric2_weight_used</th>
+        <th>fabric2_weight_wasted</th>
+        <th>trimming_technique</th>
+        <th>sewing_technique</th>
+        <th>printing_technique</th>
+        <th>chemical_finish</th>
+        <th>screen_printing_or_heat_transfer</th>
+        <th>quantity_produced</th>
+        <th>quantity_in_inventory</th>
+        <th>production_cost_per_unit</th>
+    </tr>
+    {% if garments %}
+    {% for f in garments %}
+    <tr>
+        <td>{{ f.row_id }}</td>
+        <td>{{ f.garment_name }}</td>
+        <td>{{ f.number_fabrics_used }}</td>
+        <td>{{ f.fabric1_id }} </td>
+        <td>{{ f.fabric1.fabric.fabric.fabric_name }}</td>
+        <td>{{ f.fabric1_weight_used }}</td>
+        <td>{{ f.fabric1_weight_wasted }}</td>
+        <td>{{ f.fabric2_id }} </td>
+        <td>{{ f.fabric2.fabric.fabric.fabric_name }}</td>
+        <td>{{ f.fabric2_weight_used }}</td>
+        <td>{{ f.fabric2_weight_wasted }}</td>
+        <td>{{ f.trimming_technique }}</td>
+        <td>{{ f.sewing_technique }}</td>
+        <td>{{ f.printing_technique }}</td>
+        <td>{{ f.chemical_finish }}</td>
+        <td>{{ f.screen_printing_or_heat_transfer }}</td>
+        <td>{{ f.quantity_produced }}</td>
+        <td>{{ f.quantity_in_inventory }}</td>
+        <td>{{ f.production_cost_per_unit }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

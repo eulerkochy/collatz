@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} transactions {% endblock %}
+
+{% block heading %}
+transactions
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>fabric id</th>
+        <th>area sold</th>
+        <th>weight sold</th>
+        <th>buyer id</th>
+        <th>selling_price_per_unit</th>
+        <th>rebate</th>
+    </tr>
+    {% if transactions %}
+    {% for f in transactions %}
+    <tr>
+        <td>{{ f.row_id }}</td>
+        <td>{{ f.fabric_id }}</td>
+        <td>{{f.area}}</td>
+        <td>{{f.weight}}</td>
+        <td>{{f.sold_to}}</td>
+        <td>{{f.selling_price_per_unit}}</td>
+        <td>{{f.rebate}}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

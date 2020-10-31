@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+Input Transaction with garment assembler
+{% endblock %}
+
+{% block heading %}
+Input Transaction with garment assembler
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('transaction_with_garment_assembler')}}" method="POST" style="padding:5px;">
+
+    <!-- fabric_id Field -->
+    {{ form.fabric_id.label }}: <br>
+    {{ form.fabric_id }}
+    <br>
+    {% if form.fabric_id.errors %}
+    {% for error in form.fabric_id.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- area Field -->
+    {{ form.area.label }}: <br>
+    {{ form.area }}
+    <br>
+    {% if form.area.errors %}
+    {% for error in form.area.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- weight field Field -->
+    {{ form.weight.label }}: <br>
+    {{ form.weight }}
+    <br>
+    {% if form.weight.errors %}
+    {% for error in form.weight.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- sold_to field Field -->
+    {{ form.sold_to.label }}: <br>
+    {{ form.sold_to }}
+    <br>
+    {% if form.sold_to.errors %}
+    {% for error in form.sold_to.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- selling_price_per_unit Field -->
+    {{ form.selling_price_per_unit.label }}: <br>
+    {{ form.selling_price_per_unit }}
+    <br>
+    {% if form.selling_price_per_unit.errors %}
+    {% for error in form.selling_price_per_unit.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- rebate field Field -->
+    {{ form.rebate.label }}: <br>
+    {{ form.rebate }}
+    <br>
+    {% if form.rebate.errors %}
+    {% for error in form.rebate.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}

@@ -6,3 +6,5 @@ class User(db.Model):
     contact_number = db.Column(db.Integer, unique = True)
     email = db.Column(db.String, unique = True)
     password = db.Column(db.String, nullable=False)
+
+    garments_bought = db.relationship("TransactionWithUser", backref = "user")

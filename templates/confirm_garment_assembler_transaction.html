@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Confirm details of input fabric
+{% endblock %}
+
+{% block heading %}
+Confirm details of input fabric
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+    <table>
+        <tr>
+            <th>fabric id</th>
+            <th>fabric name</th>
+            <th>number of fibres used</th>
+            <th>fibre 1</th>
+            <th>type of fibre 1</th>
+            <th>area</th>
+            <th>weight</th>
+            <th>cost price</th>
+            <th>rebate</th>
+        </tr>
+        <tr>
+            <td>{{transaction.fabric.fabric_id}}</td>
+            <td>{{transaction.fabric.fabric.fabric_name}}</td>
+            <td>{{transaction.fabric.fabric.number_fibres_used}}</td>
+            <td>{{transaction.fabric.fabric.fibre1.fibre}}</td>
+            <td>{{transaction.fabric.fabric.fibre1.type_of_fibre}}</td>
+            <td>{{transaction.fabric.area}}</td>
+            <td>{{transaction.fabric.weight}}</td>
+            <td>{{transaction.fabric.selling_price_per_unit}}</td>
+            <td>{{transaction.fabric.rebate}}</td>
+        </tr>
+    </table>
+
+{% if form %}
+<form action="{{url_for('confirm_garment_assembler_transaction')}}" method="POST" style="padding:5px;">
+
+    {{ form.csrf_token }}
+    {{ form.confirm }}
+    {{ form.cancel }}
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Input transaction
+{% endblock %}
+
+{% block heading %}
+Input transaction
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('input_by_retailer')}}" method="POST" style="padding:5px;">
+
+    <!-- transaction_id Field -->
+    {{ form.transaction_id.label }}: <br>
+    {{ form.transaction_id }}
+    <br>
+    {% if form.transaction_id.errors %}
+    {% for error in form.transaction_id.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}

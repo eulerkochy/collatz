@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-Login
+Input Fibre
 {% endblock %}
 
 {% block heading %}
-Login
+Input Fibre
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@ Login
 {% endif %}
 
 {% if form %}
-<form action="{{url_for('add_fibre')}}" method="POST" style="padding:5px;">
+<form action="{{url_for('input_fibre')}}" method="POST" style="padding:5px;">
 
     <!-- Source Location Field -->
     {{ form.source_location.label }}: <br>

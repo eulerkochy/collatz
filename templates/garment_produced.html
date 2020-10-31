@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}
+Garment Produced
+{% endblock %}
+
+{% block heading %}
+Garment Produced
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('garment_produced')}}" method="POST" style="padding:5px;">
+
+    <!-- garment_name Field -->
+    {{ form.garment_name.label }}: <br>
+    {{ form.garment_name }}
+    <br>
+    {% if form.garment_name.errors %}
+    {% for error in form.garment_name.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- number_fabrics_used Field -->
+    {{ form.number_fabrics_used.label }}: <br>
+    {{ form.number_fabrics_used }}
+    <br>
+    {% if form.number_fabrics_used.errors %}
+    {% for error in form.number_fabrics_used.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fabric1_id Field -->
+    {{ form.fabric1_id.label }}: <br>
+    {{ form.fabric1_id }}
+    <br>
+    {% if form.fabric1_id.errors %}
+    {% for error in form.fabric1_id.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fabric1_weight_used Field -->
+    {{ form.fabric1_weight_used.label }}: <br>
+    {{ form.fabric1_weight_used }}
+    <br>
+    {% if form.fabric1_weight_used.errors %}
+    {% for error in form.fabric1_weight_used.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fabric1_weight_wasted Field -->
+    {{ form.fabric1_weight_wasted.label }}: <br>
+    {{ form.fabric1_weight_wasted }}
+    <br>
+    {% if form.fabric1_weight_wasted.errors %}
+    {% for error in form.fabric1_weight_wasted.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fabric2_id Field -->
+    {{ form.fabric2_id.label }}: <br>
+    {{ form.fabric2_id }}
+    <br>
+    {% if form.fabric2_id.errors %}
+    {% for error in form.fabric2_id.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+    <!-- fabric2_weight_used Field -->
+    {{ form.fabric2_weight_used.label }}: <br>
+    {{ form.fabric2_weight_used }}
+    <br>
+    {% if form.fabric2_weight_used.errors %}
+    {% for error in form.fabric2_weight_used.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+    
+    <!-- fabric2_weight_wasted Field -->
+    {{ form.fabric2_weight_wasted.label }}: <br>
+    {{ form.fabric2_weight_wasted }}
+    <br>
+    {% if form.fabric2_weight_wasted.errors %}
+    {% for error in form.fabric2_weight_wasted.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- trimming_technique Field -->
+    {{ form.trimming_technique.label }}: <br>
+    {{ form.trimming_technique }}
+    <br>
+    {% if form.trimming_technique.errors %}
+    {% for error in form.trimming_technique.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- sewing_technique Field -->
+    {{ form.sewing_technique.label }}: <br>
+    {{ form.sewing_technique }}
+    <br>
+    {% if form.sewing_technique.errors %}
+    {% for error in form.sewing_technique.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- printing_technique Field -->
+    {{ form.printing_technique.label }}: <br>
+    {{ form.printing_technique }}
+    <br>
+    {% if form.printing_technique.errors %}
+    {% for error in form.printing_technique.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- chemical_finish Field -->
+    {{ form.chemical_finish.label }}: <br>
+    {{ form.chemical_finish }}
+    <br>
+    {% if form.chemical_finish.errors %}
+    {% for error in form.chemical_finish.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- screen_printing_or_heat_transfer Field -->
+    {{ form.screen_printing_or_heat_transfer.label }}: <br>
+    {{ form.screen_printing_or_heat_transfer }}
+    <br>
+    {% if form.screen_printing_or_heat_transfer.errors %}
+    {% for error in form.screen_printing_or_heat_transfer.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- quantity_produced Field -->
+    {{ form.quantity_produced.label }}: <br>
+    {{ form.quantity_produced }}
+    <br>
+    {% if form.quantity_produced.errors %}
+    {% for error in form.quantity_produced.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- production_cost_per_unit Field -->
+    {{ form.production_cost_per_unit.label }}: <br>
+    {{ form.production_cost_per_unit }}
+    <br>
+    {% if form.production_cost_per_unit.errors %}
+    {% for error in form.production_cost_per_unit.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}
