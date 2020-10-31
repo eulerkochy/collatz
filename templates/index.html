@@ -1,45 +1,46 @@
 <!doctype html>
 <html lang="en">
- 
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="../static/assets/vendor/bootstrap/css/bootstrap.min.css">
-        <link href="../static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="../static/assets/libs/css/style.css">
-        <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-        <link rel="stylesheet" href="../static/assets/vendor/charts/chartist-bundle/chartist.css">
-        <link rel="stylesheet" href="../static/assets/vendor/charts/morris-bundle/morris.css">
-        <link rel="stylesheet" href="../static/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="../static/assets/vendor/charts/c3charts/c3.css">
-        <link rel="stylesheet" href="../static/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/dataTables.bootstrap4.css">
-        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/buttons.bootstrap4.css">
-        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/select.bootstrap4.css">
-        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
-        <title>Collatz - A Sustainability Dashboard</title>
-    </head>
-    
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/assets/libs/css/style.css">
+    <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="../static/assets/vendor/charts/chartist-bundle/chartist.css">
+    <link rel="stylesheet" href="../static/assets/vendor/charts/morris-bundle/morris.css">
+    <link rel="stylesheet" href="../static/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/assets/vendor/charts/c3charts/c3.css">
+    <link rel="stylesheet" href="../static/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/buttons.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/select.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    <title>Collatz - A Sustainability Dashboard</title>
+</head>
+
 <body>
     <!-- Warehouse modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+            <div class="modal-content">
 
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    
-                    
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
                         <h5 class="card-header">Raw Material | Warehouse</h5>
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
-                                        <label for="input-select1">Seller Information</label>
-                                        <select class="form-control" id="input-select1">
-                                            <option>ABC Surat</option>
-                                        </select>
+                                    <label for="input-select1">Seller Information</label>
+                                    <select class="form-control" id="input-select1">
+                                        <option>ABC Surat</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -86,35 +87,37 @@
                                     </select>
                                 </div> -->
 
-                                
 
-                                    
-                                                                   
+
+
+
                             </form>
                         </div>
 
-                        <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
-                
-                        
-                    
+                        <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"
+                            style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
+
+
+
+                    </div>
                 </div>
+
+
             </div>
-
-
-          </div>
         </div>
-      </div>
-      <!-- End warehouse modal -->
+    </div>
+    <!-- End warehouse modal -->
 
-      <!-- start of finished goods -->
-      <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1" aria-hidden="true">
+    <!-- start of finished goods -->
+    <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+            <div class="modal-content">
 
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    
-                    
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
                         <h5 class="card-header">Finished Goods | Warehouse</h5>
                         <div class="card-body">
                             <form>
@@ -134,7 +137,6 @@
                                 <!-- <div class="form-group">
                                     <label for="input-select2"> Cost per unit</label>
                                     <input id="input-select2" type="number" class="form-control" placeholder="5000">
-
                                 </div> -->
 
                                 <div class="form-group">
@@ -148,77 +150,135 @@
                                     <input id="input-select4" type="number" class="form-control" placeholder="100">
 
                                 </div>
-                                    
-                                                                   
+
+
                             </form>
                         </div>
 
-                        <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
-                
-                        
-                    
+                        <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"
+                            style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
+
+
+
+                    </div>
                 </div>
+
+
             </div>
-
-
-          </div>
         </div>
-      </div>
-      <!-- end of finished goods -->
-      <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1" aria-hidden="true">
+    </div>
+    <!-- end of finished goods -->
+    <div class="modal fade bd-example-modal-lg inventory" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+            <div class="modal-content">
 
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    
-                    
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
                         <h5 class="card-header">Inventory Produced</h5>
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
                                     <label for="input-select1">Product ID</label>
-                                    <input id="input-select1" type="number" class="form-control" placeholder="ABC Surat">
-
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="input-select2">Number of fabric</label>
+                                    <label for="input-select2">Cost price per unit</label>
                                     <input id="input-select2" type="number" class="form-control" placeholder="10">
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="input-select3">Fabric type details</label>
-                                    <select class="form-control" id="input-select3">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
+                                    <label for="input-select3">Number of fabric</label>
+                                    <input id="input-select2" type="number" class="form-control" placeholder="10">
+
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="input-select4"></label>
+                                    <label for="input-select4">Fabric Type</label>
                                     <input id="input-select4" type="number" class="form-control" placeholder="100">
-
                                 </div>
-                                    
-                                                                   
+
+                                <div class="form-group">
+                                    <label for="input-select4">Weight of Fabric 1</label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select4">Weight of Waste from Fabric 1</label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select4">Weight of Fabric 2</label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select4">Weight of Waste from Fabric 2</label>
+                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select1">Trimming Technique</label>
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select1">Sewing Technique</label>
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select1">Printing Technique</label>
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select1">Chemical Finish</label>
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select1">Screen Printing</label>
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-select1">Number of Units</label>
+                                    <input id="input-select1" type="text" class="form-control" placeholder="ABC Surat">
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
                             </form>
                         </div>
 
-                        <button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false" style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
-                
-                        
-                    
+                        <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"
+                            style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
+
+
+
+                    </div>
                 </div>
+
+
             </div>
-
-
-          </div>
         </div>
-      </div>
-      
+    </div>
+
 
     <!-- ============================================================== -->
     <!-- main wrapper -->
@@ -234,23 +294,31 @@
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
 
-                <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 70%;"  aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".bd-example-modal-lg">Warehouse Details</button>
-                
-                
-                
-                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1%;" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Transaction Details</button>
-                
-                <div class="dropdown-menu nav-user-dropdown" aria-labelledby="transactiondetails" style="margin-left: 90%;">
-                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".finishedgoods">Finished Goods</a>
-                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".inventory">Inventory Produced</a>
-                    
+                <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 70%;"
+                    aria-haspopup="true" aria-expanded="false" data-toggle="modal"
+                    data-target=".bd-example-modal-lg">Warehouse Details</button>
+
+
+
+                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1%;"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaction Details</button>
+
+                <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90%;">
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
+                        data-target=".finishedgoods">Finished Goods</a>
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
+                        data-target=".inventory">Inventory Produced</a>
+
                 </div>
-                
+
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../static/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
+                                aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
@@ -274,7 +342,8 @@
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -283,25 +352,33 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#" ><i class="fa fa-fw fa-chart-pie"></i>Performance Summary <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="#"><i class="fa fa-fw fa-chart-pie"></i>Performance
+                                    Summary <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{url_for('leaderboard')}}" ><i class="fa fa-fw fa-chart-line"></i>Leaderboard <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="leaderboard.html"><i
+                                        class="fa fa-fw fa-chart-line"></i>Leaderboard <span
+                                        class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-clipboard-list"></i>Recommendations <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="#"><i class="fa fa-fw fa-clipboard-list"></i>Recommendations
+                                    <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-address-book"></i>Contacts <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="#"><i class="fa fa-fw fa-address-book"></i>Contacts <span
+                                        class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-handshake"></i>Agents <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="#"><i class="fa fa-fw fa-handshake"></i>Agents <span
+                                        class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="#"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span
+                                        class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-leaf"></i>Learn to Sustain <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="#"><i class="fa fa-fw fa-leaf"></i>Learn to Sustain <span
+                                        class="badge badge-success">6</span></a>
                             </li>
                         </ul>
                     </div>
@@ -336,7 +413,7 @@
                     <div class="ecommerce-widget" height="80em">
                         <div class="row">
                             <!-- ============================================================== -->
-              				                        <!-- Profitability  -->
+                            <!-- Profitability  -->
                             <!-- ============================================================== -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
@@ -345,23 +422,29 @@
                                         <div class="ct-chart-category ct-golden-section" style="height: 50%;"></div>
                                         <div class="text-center m-t-40">
                                             <span class="legend-item mr-3">
-                                                    <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full " style="color:#005fa3"></i></span>
-                                                    <span class="legend-text">High</span>
+                                                <span class="fa-xs text-primary mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full "
+                                                        style="color:#005fa3"></i></span>
+                                                <span class="legend-text">High</span>
                                             </span>
                                             <span class="legend-item mr-3">
-                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#61b7e8"></i></span>
-                                            <span class="legend-text">Medium</span>
+                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full"
+                                                        style="color:#61b7e8"></i></span>
+                                                <span class="legend-text">Medium</span>
                                             </span>
                                             <span class="legend-item mr-3">
-                                                <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#d5e9f5"></i></span>
-                                            <span class="legend-text">Low</span>
+                                                <span class="fa-xs text-info mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full"
+                                                        style="color:#d5e9f5"></i></span>
+                                                <span class="legend-text">Low</span>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- ============================================================== -->
-              				                        <!-- Sustainability  -->
+                            <!-- Sustainability  -->
                             <!-- ============================================================== -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
@@ -370,24 +453,30 @@
                                         <div class="ct-chart-category-1 ct-golden-section" style="height: 50%;"></div>
                                         <div class="text-center m-t-40">
                                             <span class="legend-item mr-3">
-                                                    <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full " style="color:#005fa3"></i></span>
-                                                    <span class="legend-text">High</span>
+                                                <span class="fa-xs text-primary mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full "
+                                                        style="color:#005fa3"></i></span>
+                                                <span class="legend-text">High</span>
                                             </span>
                                             <span class="legend-item mr-3">
-                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#61b7e8"></i></span>
-                                            <span class="legend-text">Medium</span>
+                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full"
+                                                        style="color:#61b7e8"></i></span>
+                                                <span class="legend-text">Medium</span>
                                             </span>
                                             <span class="legend-item mr-3">
-                                                <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#d5e9f5"></i></span>
-                                            <span class="legend-text">Low</span>
+                                                <span class="fa-xs text-info mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full"
+                                                        style="color:#d5e9f5"></i></span>
+                                                <span class="legend-text">Low</span>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                         <!-- ============================================================== -->
-              				                        <!-- Volume Sales  -->
+                            <!-- ============================================================== -->
+                            <!-- Volume Sales  -->
                             <!-- ============================================================== -->
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
@@ -396,16 +485,21 @@
                                         <div class="ct-chart-category-2 ct-golden-section" style="height: 50%;"></div>
                                         <div class="text-center m-t-40">
                                             <span class="legend-item mr-3">
-                                                    <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full " style="color:#005fa3"></i>
-                                            </span><span class="legend-text">High</span>
+                                                <span class="fa-xs text-primary mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full " style="color:#005fa3"></i>
+                                                </span><span class="legend-text">High</span>
                                             </span>
                                             <span class="legend-item mr-3">
-                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#61b7e8"></i></span>
-                                            <span class="legend-text">Medium</span>
+                                                <span class="fa-xs text-secondary mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full"
+                                                        style="color:#61b7e8"></i></span>
+                                                <span class="legend-text">Medium</span>
                                             </span>
                                             <span class="legend-item mr-3">
-                                                <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#d5e9f5"></i></span>
-                                            <span class="legend-text">Low</span>
+                                                <span class="fa-xs text-info mr-1 legend-tile"><i
+                                                        class="fa fa-fw fa-square-full"
+                                                        style="color:#d5e9f5"></i></span>
+                                                <span class="legend-text">Low</span>
                                             </span>
                                         </div>
                                     </div>
@@ -413,17 +507,17 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="row">
                             <!-- ============================================================== -->
                             <!-- total revenue  -->
                             <!-- ============================================================== -->
-  
+
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="card">
                                     <h5 class="card-header">Trends</h5>
-                                    
+
                                     <div class="card-body">
                                         <canvas id="chartjs_line" height="100%"></canvas>
                                     </div>
@@ -436,7 +530,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            
+
             <!-- ============================================================== -->
             <!-- end footer -->
             <!-- ============================================================== -->
@@ -450,27 +544,27 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="../static/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
-    <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- slimscroll js -->
-    <script src="../static/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <!-- main js -->
-    <script src="../static/assets/libs/js/main-js.js"></script>
+    <script src="assets/libs/js/main-js.js"></script>
     <!-- chart chartist js -->
-    <script src="../static/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
-    <script src="../static/assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
-    <script src="../static/assets/vendor/charts/charts-bundle/chartjs.js"></script>
+    <script src="assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
+    <script src="assets/vendor/charts/charts-bundle/chartjs.js"></script>
     <!-- sparkline js -->
-    <script src="../static/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
     <!-- morris js -->
-    <script src="../static/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
-    <script src="../static/assets/vendor/charts/morris-bundle/morris.js"></script>
+    <script src="assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="assets/vendor/charts/morris-bundle/morris.js"></script>
     <!-- chart c3 js -->
-    <script src="../static/assets/vendor/charts/c3charts/c3.min.js"></script>
-    <script src="../static/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
-    <script src="../static/assets/vendor/charts/c3charts/C3chartjs.js"></script>
-    <script src="../static/assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="assets/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
- 
+
 </html>

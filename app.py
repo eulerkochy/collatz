@@ -57,7 +57,7 @@ def signup():
             return render_template("front-page.html", form = form, message = "Error.")
         finally:
             db.session.close()
-        return render_template("front-page.html", message = "Successfully signed up")
+        return render_template("index.html")
     elif form.errors:
         print(form.errors.items())
     return render_template("front-page.html", form = form)
@@ -119,7 +119,7 @@ def login():
             return render_template("front-page.html", form = form_login, message = "Incorrect password")
         else:
             session['user'] = user.email
-            return render_template("front-page.html", message = "Successfully Logged In!")
+            return render_template("index.html", message = "Successfully Logged In!")
     elif form_login.errors:
         print(form_login.errors.items())
     return render_template("front-page.html", form = form_login)
