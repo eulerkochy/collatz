@@ -395,12 +395,19 @@ def garment_produced():
             return render_template("garment_produced.html", form = form, message = "Error.")
         finally:
             db.session.close()
-
         return render_template("garment_produced.html", message = "Successfully added garment, id ="+str(garment_id))
 
     elif form.errors:
         print(form.errors.items())
     return render_template("garment_produced.html", form = form)
+
+@app.route('/index')
+def index():
+    return render_template("index.html")
+
+@app.route('/leaderboard')
+def leaderboard():
+    return render_template("leaderboard.html")
 
 @app.route('/garment_produced_list')
 def garment_produced_list():
