@@ -19,335 +19,6 @@
 </head>
 
 <body>
-    <!-- Warehouse modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-    
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
-    
-                        <h5 class="card-header">Raw Material | Warehouse</h5>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="input-select1">Seller Information</label>
-                                    <select class="form-control" id="input-select1">
-                                        <option>ABC Surat</option>
-                                    </select>
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="input-select2">Type of Fabric</label>
-                                    <select class="form-control" id="input-select2">
-                                        <option>Organic</option>
-                                    </select>
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="input-select3">Area of fabric (square metre)</label>
-                                    <input id="input-select3" type="number" class="form-control" placeholder="100">
-    
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="input-select7">Weight of fabric</label>
-                                    <input id="input-select7" type="number" class="form-control" placeholder="1000kg">
-                                </div>
-    
-    
-                                <div class="form-group">
-                                    <label for="input-select4">Cost per unit (INR)</label>
-                                    <input id="input-select4" type="number" class="form-control" placeholder="INR 100">
-    
-                                </div>
-                                <div class="form-group">
-                                    <label for="input-select5">Rebate Percentage</label>
-                                    <input id="input-select5" type="number" class="form-control" placeholder="12.5">
-    
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="input-select6">Product ID</label>
-                                    <select class="form-control" id="input-select6">
-                                        <option>P23451</option>
-                                    </select>
-                                </div>
-    
-                                <!-- <div class="form-group">
-                                        <label for="input-select7">Number of fabric used</label>
-                                        <select class="form-control" id="input-select7">
-                                            <option>3</option>
-                                        </select>
-                                    </div> -->
-    
-    
-    
-    
-    
-                            </form>
-                        </div>
-    
-                        <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"
-                            style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
-    
-    
-    
-                    </div>
-                </div>
-    
-    
-            </div>
-        </div>
-    </div>
-    <!-- End warehouse modal -->
-    
-    <!-- start of finished goods -->
-    <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog"
-        aria-labelledby="myLargeModalLabel1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-    
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
-    
-                        <h5 class="card-header">Finished Grments | Warehouse</h5>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="input-select1">Product ID</label>
-                                    <input id="input-select1" type="number" class="form-control" placeholder="A2938">
-    
-                                </div>
-    
-    
-                                <div class="form-group">
-                                    <label for="input-select1">Units sold</label>
-                                    <input id="input-select1" type="number" class="form-control" placeholder="1000">
-    
-                                </div>
-    
-                                <!-- <div class="form-group">
-                                        <label for="input-select2"> Cost per unit</label>
-                                        <input id="input-select2" type="number" class="form-control" placeholder="5000">
-                                    </div> -->
-    
-                                <div class="form-group">
-                                    <label for="input-select3">Sold To</label>
-                                    <input id="input-select3" type="number" class="form-control" placeholder="myntra">
-    
-                                </div>
-    
-                                <div class="form-group">
-                                    <label for="input-select4">Selling Price/unit</label>
-                                    <input id="input-select4" type="number" class="form-control" placeholder="100">
-    
-                                </div>
-    
-    
-                            </form>
-                        </div>
-    
-                        <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false"
-                            style="width: 20%;margin-left: 5%;margin-bottom: 5%;">Submit</button>
-    
-    
-    
-                    </div>
-                </div>
-    
-    
-            </div>
-        </div>
-    </div>
-    <!-- end of finished goods -->
-    <div class="modal fade bd-example-modal-lg inventory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-    
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    
-    
-                        <h5 class="card-header">Inventory Produced</h5>
-                        <div class="card-body">
-                            {% if message %}
-                            {{ message }}
-                            <br>
-                            {% endif %}
-                            {% if form_garment %}
-                            <form  action="{{url_for('garment_produced')}}" method="POST">
-                                <div class="form-group">
-                                    {{ form_garment.garment_name.label }}: 
-                                    {{ form_garment.garment_name(class="form-control") }}
-                                    {% if form_garment.garment_name.errors %}
-                                    {% for error in form_garment.garment_name.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.number_fabrics_used.label }}: 
-                                    {{ form_garment.number_fabrics_used(class="form-control") }}
-                                    {% if form_garment.number_fabrics_used.errors %}
-                                    {% for error in form_garment.number_fabrics_used.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}    
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.fabric1_id.label }}: 
-                                    {{ form_garment.fabric1_id(class="form-control") }}
-                                    {% if form_garment.fabric1_id.errors %}
-                                    {% for error in form_garment.fabric1_id.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}    
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.fabric1_weight_used.label }}: 
-                                    {{ form_garment.fabric1_weight_used(class="form-control") }}
-                                    {% if form_garment.fabric1_weight_used.errors %}
-                                    {% for error in form_garment.fabric1_weight_used.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.fabric1_weight_wasted.label }}: <br>
-                                    {{ form_garment.fabric1_weight_wasted(class="form-control") }}
-                                    <br>
-                                    {% if form_garment.fabric1_weight_wasted.errors %}
-                                    {% for error in form_garment.fabric1_weight_wasted.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    <br>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.fabric2_id.label }}: 
-                                    {{ form_garment.fabric2_id(class="form-control") }}
-                                    {% if form_garment.fabric2_id.errors %}
-                                    {% for error in form_garment.fabric2_id.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.fabric2_weight_used.label }}: 
-                                    {{ form_garment.fabric2_weight_used(class="form-control") }}
-                                    {% if form_garment.fabric2_weight_used.errors %}
-                                    {% for error in form_garment.fabric2_weight_used.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.fabric2_weight_wasted.label }}: 
-                                    {{ form_garment.fabric2_weight_wasted(class="form-control") }}
-                                    {% if form_garment.fabric2_weight_wasted.errors %}
-                                    {% for error in form_garment.fabric2_weight_wasted.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.trimming_technique.label }}: 
-                                    {{ form_garment.trimming_technique(class="form-control") }}
-                                    {% if form_garment.trimming_technique.errors %}
-                                    {% for error in form_garment.trimming_technique.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.sewing_technique.label }}: 
-                                    {{ form_garment.sewing_technique(class="form-control") }}
-                                    {% if form_garment.sewing_technique.errors %}
-                                    {% for error in form_garment.sewing_technique.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.printing_technique.label }}: 
-                                    {{ form_garment.printing_technique(class="form-control") }}
-                                    {% if form_garment.printing_technique.errors %}
-                                    {% for error in form_garment.printing_technique.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.chemical_finish.label }}: 
-                                    {{ form_garment.chemical_finish(class="form-control") }}
-                                    {% if form_garment.chemical_finish.errors %}
-                                    {% for error in form_garment.chemical_finish.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.screen_printing_or_heat_transfer.label }}: 
-                                    {{ form_garment.screen_printing_or_heat_transfer(class="form-control") }}
-                                    {% if form_garment.screen_printing_or_heat_transfer.errors %}
-                                    {% for error in form_garment.screen_printing_or_heat_transfer.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-    
-                                <div class="form-group">
-                                    {{ form_garment.quantity_produced.label }}: 
-                                    {{ form_garment.quantity_produced(class="form-control") }}
-                                    {% if form_garment.quantity_produced.errors %}
-                                    {% for error in form_garment.quantity_produced.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-
-                                <div class="form-group">
-                                    {{ form_garment.production_cost_per_unit.label }}: 
-                                    {{ form_garment.production_cost_per_unit(class="form-control") }}
-                                    {% if form_garment.production_cost_per_unit.errors %}
-                                    {% for error in form_garment.production_cost_per_unit.errors %}
-                                    <b style="color:tomato;"> {{ error }} </b>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div> 
-                                
-                                {{ form.csrf_token }}
-                                {{ form.submit(class="btn btn-primary") }}
-    
-                            </form>
-                            {% endif %}
-                        </div>
-    
-    
-                    </div>
-                </div>
-    
-    
-            </div>
-        </div>
-    </div>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -357,33 +28,33 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">Collatz</a>
+                <a class="navbar-brand" href="{{url_for('index')}}">Collatz</a>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button> -->
         
-                <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 65em;"
-                    aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".bd-example-modal-lg">Warehouse
-                    Details</button>
-        
-        
-        
-                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1em;"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Transaction Details</button>
-        
-                <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90em;">
-                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
-                        data-target=".finishedgoods">Finished Goods</a>
+                <!-- <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 64em;" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Warehouse Details</button>
+                    <div class="dropdown-menu" aria-labelledby="Warehousedetails" style="margin-left: 79em;">
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".bd-example-modal-lg">Inventory Purchased</a>
                     <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
                         data-target=".inventory">Inventory Produced</a>
+                    </div>
         
-                </div>
+        
+                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1em;" aria-haspopup="true"
+                    aria-expanded="false" data-toggle="modal" data-target=".finishedgoods">Transaction Details</button>
+         -->
+                <!-- <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90em;"> -->
+                    <!-- <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" -->
+                        <!-- data-target=".finishedgoods">Finished Goods</a> -->
+        
         
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="static/assets/images/avatar-1.jpg" alt=""
+                                aria-haspopup="true" aria-expanded="false"><img src="/static/assets/images/avatar-1.jpg" alt=""
                                     class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
                                 aria-labelledby="navbarDropdownMenuLink2">
@@ -393,7 +64,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="{{url_for('index')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -420,11 +91,11 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#"><i class="fa fa-fw fa-chart-pie"></i>Performance
+                                <a class="nav-link active" href="{{url_for('index')}}"><i class="fa fa-fw fa-chart-pie"></i>Performance
                                     Summary <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="templates/leaderboard.html"><i
+                                <a class="nav-link" href="{{url_for('leaderboard')}}"><i
                                         class="fa fa-fw fa-chart-line"></i>Leaderboard <span
                                         class="badge badge-success">6</span></a>
                             </li>
@@ -437,7 +108,7 @@
                                         class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-handshake"></i>Agents <span
+                                <a class="nav-link" href="{{url_for('transaction_tables')}}"><i class="fa fa-fw fa-handshake"></i>Inventory and Transactions <span
                                         class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">

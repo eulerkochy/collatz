@@ -11,6 +11,196 @@ from datetime import date
 db.drop_all()
 db.create_all() 
 
+new_user_g = GarmentAssembler(
+    name_of_company = "g1",
+    contact_number = 111, 
+    address = "1",
+    email = "g1@gmail.com",
+    password = "g1",
+    year_of_estab = 1991,
+    annual_turnover = 1,
+    employee_strength = 10,
+    poc_1_name = "xyz",
+    poc_1_contact_number = 112,
+    poc_1_email = "1@gmail.com",
+    poc_1_designation = 1,
+)
+
+new_user_f = FabricManufacturer(
+    name_of_company = "f1",
+    contact_number = 111, 
+    address = "1",
+    email = "f1@gmail.com",
+    password = "f1",
+    year_of_estab = 1991,
+    annual_turnover = 1,
+    employee_strength = 10,
+    poc_1_name = "xyz",
+    poc_1_contact_number = 112,
+    poc_1_email = "1@gmail.com",
+    poc_1_designation = 1,
+)
+new_user_r = Retailer(
+    name_of_company = "r1",
+    contact_number = 111, 
+    address = "1",
+    email = "r1@gmail.com",
+    password = "r1",
+    year_of_estab = 1991,
+    annual_turnover = 1,
+    employee_strength = 10,
+    poc_1_name = "xyz",
+    poc_1_contact_number = 112,
+    poc_1_email = "1@gmail.com",
+    poc_1_designation = 1,
+)
+
+new_user = User(
+    name = "u1",
+    email = "u1@gmail.com",
+    contact_number = 111,
+    password = "u1",
+)
+
+db.session.add(new_user_f)
+db.session.add(new_user_g)
+db.session.add(new_user_r)            
+db.session.add(new_user)
+
+new_fibre = RawFibre(
+    source_location = "Maharashtra",
+    manufacturer = "Cotton Plus",
+    contact_of_manufacturer = "9783702110",
+    fibre = "Cotton",
+    weight = 10.0,
+    weight_usable = 10.0,
+    cost_per_unit = 1.0,
+    rebate = 1.0,
+    type_of_fibre = "Organic",
+    owner = "f1@gmail.com",
+)
+
+db.session.add(new_fibre)
+new_user_f.fibres_owned.append(new_fibre)
+
+fabric1 = FabricProduced(
+    fabric_name = "Pure Cotton",
+    producer = "f1@gmail.com",
+    number_fibres_used = 1,
+    fibre1_id = 1,
+    fibre1 = new_fibre,
+    fibre1_weight_used = 2.0,
+    fibre1_weight_wasted = 1.0,
+    area = 10.0,
+    weight = 10.0,
+    weight_in_inventory = 10.0,
+    production_cost_per_unit = 1.0,
+)
+
+fabric2 = FabricProduced(
+    fabric_name = "Sustainable Cotton",
+    producer = "f1@gmail.com",
+    number_fibres_used = 1,
+    fibre1_id = 1,
+    fibre1 = new_fibre,
+    fibre1_weight_used = 5.0,
+    fibre1_weight_wasted = 1.0,
+    area = 50.0,
+    weight = 50.0,
+    weight_in_inventory = 50.0,
+    production_cost_per_unit = 1.0,
+)
+
+db.session.add(fabric1)
+db.session.add(fabric2)
+
+new_user_f.fabrics_produced.append(fabric1)
+new_user_f.fabrics_produced.append(fabric1)
+
+trans1 = TransactionWithGarmentAssembler(
+    fabric_id = 1,
+    fabric = fabric1,
+    area = 2,
+    weight = 2,
+    sold_by = 1,
+    sold_to = 1,
+    selling_price_per_unit = 1,
+    rebate = 1
+)
+
+trans2 = TransactionWithGarmentAssembler(
+    fabric_id = 2,
+    fabric = fabric2,
+    area = 5,
+    weight = 5,
+    sold_by = 1,
+    sold_to = 1,
+    selling_price_per_unit = 1,
+    rebate = 1
+)
+
+db.session.add(trans1)
+db.session.add(trans2)
+
+new_user_f.transactions_with_garment_assembler.append(trans1)
+new_user_f.transactions_with_garment_assembler.append(trans2)
+
+
+try:
+    db.session.commit()
+except Exception as e:
+    print(e)
+    db.session.rollback()
+finally:
+    db.session.close()
+
+@app.route("/transaction_tables")
+def transaction_tables():
+    _form_garment = None
+    _form_input_by_garment_assembler = None
+    _form_retailer = None
+
+    _form_input_by_retailer = None
+    _form_user = None
+
+    user_in_session = session['user']
+    fabrics_owned = None
+    garments_produced = None
+    transactions_retailer = None
+    garments_owned = None
+    transactions_user = None
+    user_garment = GarmentAssembler.query.get(user_in_session)
+    user_retailer = Retailer.query.get(user_in_session)
+    if user_garment:
+        print(user_garment)
+        _form_garment = GarmentProducedForm()
+        _form_input_by_garment_assembler = InputForm()
+        _form_retailer = TransactionWithRetailerForm()
+        fabrics_owned = user_garment.fabrics_owned
+        garments_produced = user_garment.garments_produced
+        transactions_retailer = user_garment.transactions_with_retailer
+        print(fabrics_owned, garments_produced, transactions_retailer)
+    elif user_retailer:
+        print(user_retailer)
+        _form_input_by_retailer = InputForm()
+        _form_user = TransactionWithUserForm()
+        garments_owned = user_retailer.garments_owned
+        transactions_user = user_retailer.transactions_with_user
+        print(garments_owned, transaction_with_user)
+    return render_template(
+        "transaction.html",
+        fabrics_owned = fabrics_owned,
+        garments_produced = garments_produced,
+        transactions_retailer = transactions_retailer,
+        garments_owned = garments_owned,
+        transactions_user = transactions_user,
+        form_garment = _form_garment,
+        form_input_by_garment_assembler = _form_input_by_garment_assembler,
+        form_retailer = _form_retailer,
+        form_input_by_retailer = _form_input_by_retailer,
+        form_user = _form_user
+    )
+
 @app.route("/")
 def home():
     _form = SignUpForm()
@@ -45,7 +235,7 @@ def signup():
             
         db.session.add(new_user)
         
-        if User.query.filter_by(email = form.email.data).first():
+        if Company.query.filter_by(email = form.email.data).first():
             return render_template("front-page.html", form = form, message_signup = "This Email already exists in the system! Please Login instead.")
 
 
@@ -119,7 +309,7 @@ def login():
             return render_template("front-page.html", form_login = form_login, message_login = "Incorrect password")
         else:
             session['user'] = user.email
-            return render_template("index.html", message_login = "Successfully Logged In!")
+            return redirect("/index")
     elif form_login.errors:
         print(form_login.errors.items())
     return render_template("front-page.html", form_login = form_login)
@@ -128,7 +318,7 @@ def login():
 def logout():
     if 'user' in session:
         session.pop('user')
-    return redirect(url_for('home', _scheme='http', _external=True))
+    return redirect("/home")
 
 @app.route('/input_fibre', methods = ['POST', 'GET'])
 def input_fibre():
@@ -248,9 +438,9 @@ def transaction_with_garment_assembler():
         
         fabric = new_transaction.fabric
         if not fabric:
-            return render_template("index.html", form = form_garment, message = "Invalid fabric ID")
+            return render_template("transaction.html", form = form_garment, message = "Invalid fabric ID")
         elif fabric.weight_in_inventory < form_garment.weight.data:
-            return render_template("index.html", form = form_garment, message = "Quantity sold larger than that in inventory")
+            return render_template("transaction.html", form = form_garment, message = "Quantity sold larger than that in inventory")
         else:
             fabric.weight_in_inventory -= float(form_garment.weight.data)
         
@@ -262,15 +452,15 @@ def transaction_with_garment_assembler():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("index.html", form = form_garment, message = "Error.")
+            return render_template("transaction.html", form = form_garment, message = "Error.")
         finally:
             db.session.close()
 
-        return render_template("index.html", message = "Successfully added transaction, id =" + str(transaction_id))
+        return redirect("/transaction_tables")
 
     elif form_garment.errors:
         print(form_garment.errors.items())
-    return render_template("index.html", form = form_garment)
+    return render_template("transaction.html", form = form_garment)
 
 @app.route('/transaction_with_garment_assembler_list')
 def transaction_with_garment_assembler_list():
@@ -300,18 +490,15 @@ def input_by_garment_assembler():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("input_by_garment_assembler.html", form = form, message = "Error.")
+            return render_template("transaction.html", form_input_by_garment_assembler = form, message = "Error.")
         finally:
             db.session.close()
 
-        form = ConfirmInputForm()
-        user_in_session = GarmentAssembler.query.get(session['user'])
-        fabric = user_in_session.fabrics_owned[-1]
-        return render_template("confirm_garment_assembler_transaction.html",form = form, transaction = fabric)
+        return redirect("/transaction_tables")
         
     elif form.errors:
         print(form.errors.items())
-    return render_template("input_by_garment_assembler.html", form = form)
+    return render_template("transaction.html", form_input_by_garment_assembler = form)
 
 @app.route('/fabrics_owned_list')
 def fabrics_owned_list():
@@ -320,71 +507,73 @@ def fabrics_owned_list():
     owner_company = user_in_session.name_of_company
     return render_template("fabrics_owned_list.html", fabrics = fabrics, owner_company = owner_company)
 
-@app.route('/confirm_garment_assembler_transaction', methods = ['POST', 'GET'])
-def confirm_garment_assembler_transaction():
-    form = ConfirmInputForm()
+# @app.route('/confirm_garment_assembler_transaction', methods = ['POST', 'GET'])
+# def confirm_garment_assembler_transaction():
+#     form = ConfirmInputForm()
 
-    if form.validate_on_submit():
-        if request.form.get('confirm'):
-            return render_template("input_by_garment_assembler.html", message = "Fabric successfully added.")
-        else:
-            user_in_session = GarmentAssembler.query.get(session['user'])
-            transaction = user_in_session.fabrics_owned.pop()
-            last_input_fabric = InputFabric.query.get(transaction.rowid)
-            db.session.delete(last_input_fabric)
-            seller_transaction_input = TransactionWithGarmentAssembler.query.get(transaction.fabric.rowid)
-            fabric = FabricProduced.query.get(seller_transaction_input.fabric_id)
-            fabric.weight_in_inventory += seller_transaction_input.weight
-            db.session.delete(seller_transaction_input)
+#     if form.validate_on_submit():
+#         if request.form.get('confirm'):
+#             return render_template("index.html", message_confirmation = "Fabric successfully added.")
+#         else:
+#             user_in_session = GarmentAssembler.query.get(session['user'])
+#             transaction = user_in_session.fabrics_owned.pop()
+#             last_input_fabric = InputFabric.query.get(transaction.rowid)
+#             db.session.delete(last_input_fabric)
+#             seller_transaction_input = TransactionWithGarmentAssembler.query.get(transaction.fabric.rowid)
+#             fabric = FabricProduced.query.get(seller_transaction_input.fabric_id)
+#             fabric.weight_in_inventory += seller_transaction_input.weight
+#             db.session.delete(seller_transaction_input)
 
-            try:
-                db.session.commit()
-            except Exception as e:
-                db.session.rollback()
-                return render_template("input_by_garment_assembler.html", form = form, message = "Error.")
-            finally:
-                db.session.close()
-            return render_template("input_by_garment_assembler.html", message = "Incorrect transaction information, contact seller")
-    elif form.errors:
-        print(form.errors.items())
-    return render_template("confirm_garment_assembler_transaction.html", form = form)
+#             try:
+#                 db.session.commit()
+#             except Exception as e:
+#                 db.session.rollback()
+#                 return render_template("index.html", form_confirm_by_garment_assembler = form, message = "Error.")
+#             finally:
+#                 db.session.close()
+#             session['message'] = "Incorrect transaction information, contact seller"
+#             return redirect("/index")
+#     elif form.errors:
+#         print(form.errors.items())
+#     return render_template("index.html", form_confirm_by_garment_assembler = form)
     
 @app.route('/garment_produced', methods = ['POST', 'GET'])
 def garment_produced():
     user_in_session = GarmentAssembler.query.get(session['user'])
-    form = GarmentProducedForm()
-    if form.validate_on_submit():
+    form_garment = GarmentProducedForm()
+    if form_garment.validate_on_submit():
+        print("in garment produced")
         new_garment = GarmentProduced(
             producer = session['user'],
-            garment_name = form.garment_name.data,
-            number_fabrics_used = form.number_fabrics_used.data,
-            fabric1_id = form.fabric1_id.data,
-            fabric1 = InputFabric.query.get(form.fabric1_id.data),
-            fabric1_weight_used = form.fabric1_weight_used.data,
-            fabric1_weight_wasted = form.fabric1_weight_wasted.data,
-            fabric2_id = form.fabric2_id.data,
-            fabric2 = InputFabric.query.get(form.fabric2_id.data),
-            fabric2_weight_used = form.fabric2_weight_used.data,
-            fabric2_weight_wasted = form.fabric2_weight_wasted.data,
-            trimming_technique = form.trimming_technique.data,
-            sewing_technique = form.sewing_technique.data,
-            printing_technique = form.printing_technique.data,
-            chemical_finish = form.chemical_finish.data,
-            screen_printing_or_heat_transfer = form.screen_printing_or_heat_transfer.data,
-            quantity_produced = form.quantity_produced.data,
-            quantity_in_inventory = form.quantity_produced.data,
-            production_cost_per_unit = form.production_cost_per_unit.data
+            garment_name = form_garment.garment_name.data,
+            number_fabrics_used = form_garment.number_fabrics_used.data,
+            fabric1_id = form_garment.fabric1_id.data,
+            fabric1 = InputFabric.query.get(form_garment.fabric1_id.data),
+            fabric1_weight_used = form_garment.fabric1_weight_used.data,
+            fabric1_weight_wasted = form_garment.fabric1_weight_wasted.data,
+            fabric2_id = form_garment.fabric2_id.data,
+            fabric2 = InputFabric.query.get(form_garment.fabric2_id.data),
+            fabric2_weight_used = form_garment.fabric2_weight_used.data,
+            fabric2_weight_wasted = form_garment.fabric2_weight_wasted.data,
+            trimming_technique = form_garment.trimming_technique.data,
+            sewing_technique = form_garment.sewing_technique.data,
+            printing_technique = form_garment.printing_technique.data,
+            chemical_finish = form_garment.chemical_finish.data,
+            screen_printing_or_heat_transfer = form_garment.screen_printing_or_heat_transfer.data,
+            quantity_produced = form_garment.quantity_produced.data,
+            quantity_in_inventory = form_garment.quantity_produced.data,
+            production_cost_per_unit = form_garment.production_cost_per_unit.data
             
         )
         fabric1 = new_garment.fabric1
         fabric2 = new_garment.fabric2
         if not fabric1 or not fabric2:
-            return render_template("garment_produced.html", form_garment = form, message = "Invalid fabric ID")
-        elif fabric1.weight_usable < form.fabric1_weight_used.data or fabric2.weight_usable < form.fabric2_weight_used.data:
-            return render_template("garment_produced.html", form_garment = form, message = "Quantity used larger than that in inventory")
+            return render_template("transaction.html", form_garment = form_garment, message = "Invalid fabric ID")
+        elif fabric1.weight_usable < form_garment.fabric1_weight_used.data or fabric2.weight_usable < form_garment.fabric2_weight_used.data:
+            return render_template("transaction.html", form_garment = form_garment, message = "Quantity used larger than that in inventory")
         else:
-            fabric1.weight_usable = fabric1.weight_usable - float(form.fabric1_weight_used.data)
-            fabric2.weight_usable = fabric2.weight_usable - float(form.fabric2_weight_used.data)
+            fabric1.weight_usable = fabric1.weight_usable - float(form_garment.fabric1_weight_used.data)
+            fabric2.weight_usable = fabric2.weight_usable - float(form_garment.fabric2_weight_used.data)
 
         db.session.add(new_garment)
         user_in_session.garments_produced.append(new_garment)
@@ -394,20 +583,18 @@ def garment_produced():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("index.html", form_garment = form, message = "Error.")
+            return render_template("transaction.html", form_garment = form_garment, message = "Error.")
         finally:
             db.session.close()
-        return render_template("index.html", message = "Successfully added garment, id ="+str(garment_id))
+        return redirect("/transaction_tables")
 
-    elif form.errors:
-        print(form.errors.items())
-    return render_template("index.html", form_garment = form)
+    elif form_garment.errors:
+        print(form_garment.errors.items())
+    return render_template("transaction.html", form_garment = form_garment)
 
 @app.route('/index')
-def index():
-    _form_garment = GarmentProducedForm()
-
-    return render_template("index.html", form_garment = _form_garment)
+def index():    
+    return render_template("index.html")
 
 @app.route('/leaderboard')
 def leaderboard():
@@ -424,7 +611,7 @@ def garment_produced_list():
 def transaction_with_retailer():
     user_in_session = GarmentAssembler.query.get(session['user'])
     form = TransactionWithRetailerForm()
-    
+
     if form.validate_on_submit():
         new_transaction = TransactionWithRetailer(
             garment_id = form.garment_id.data,
@@ -435,12 +622,13 @@ def transaction_with_retailer():
             selling_price_per_unit = form.selling_price_per_unit.data,
             rebate = form.rebate.data
         )
-        
+        print(new_transaction)
         garment = new_transaction.garment
         if not garment:
-            return render_template("transaction_with_retailer.html", form = form, message = "Invalid garment ID")
+            print("not garment")
+            return render_template("transaction.html", form_retailer = form, message = "Invalid garment ID")
         elif garment.quantity_in_inventory < form.quantity_sold.data:
-            return render_template("transaction_with_retailer.html", form = form, message = "Quantity sold larger than that in inventory")
+            return render_template("transaction.html", form_retailer = form, message = "Quantity sold larger than that in inventory")
         else:
             garment.quantity_in_inventory -= int(form.quantity_sold.data)
         
@@ -452,15 +640,14 @@ def transaction_with_retailer():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("transaction_with_retailer.html", form = form, message = "Error.")
+            return render_template("transaction.html", form_retailer = form, message = "Error.")
         finally:
             db.session.close()
 
-        return render_template("transaction_with_retailer.html", message = "Successfully added transaction, id =" + str(transaction_id))
-
+        return redirect("/transaction_tables")
     elif form.errors:
         print(form.errors.items())
-    return render_template("transaction_with_retailer.html", form = form)
+    return render_template("index.html", form_retailer = form)
 
 @app.route('/transaction_with_retailer_list')
 def transaction_with_retailer_list():
@@ -489,18 +676,18 @@ def input_by_retailer():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("input_by_retailer.html", form = form, message = "Error.")
+            return render_template("transaction.html", form_input_by_retailer = form, message = "Error.")
         finally:
             db.session.close()
 
         form = ConfirmInputForm()
         user_in_session = Retailer.query.get(session['user'])
         garment = user_in_session.garments_owned[-1]
-        return render_template("confirm_retailer_transaction.html",form = form, f = garment)
+        return redirect("/transaction_tables")
         
     elif form.errors:
         print(form.errors.items())
-    return render_template("input_by_retailer.html", form = form)
+    return render_template("transaction.html", form_input_by_retailer = form)
 
 @app.route('/garments_owned_list')
 def garments_owned_list():
@@ -560,9 +747,9 @@ def transaction_with_user():
 
         garment = new_transaction.garment
         if not garment:
-            return render_template("transaction_with_user.html", form = form, message = "Invalid garment ID")
+            return render_template("transaction.html", form_user = form, message = "Invalid garment ID")
         elif garment.quantity_in_inventory < form.quantity_sold.data:
-            return render_template("transaction_with_user.html", form = form, message = "Quantity sold larger than that in inventory")
+            return render_template("transaction.html", form_user = form, message = "Quantity sold larger than that in inventory")
         else:
             garment.quantity_in_inventory -= float(form.quantity_sold.data)
         
@@ -575,15 +762,15 @@ def transaction_with_user():
         except Exception as e:
             print(e)
             db.session.rollback()
-            return render_template("transaction_with_user.html", form = form, message = "Error.")
+            return render_template("transaction.html", form_user = form, message = "Error.")
         finally:
             db.session.close()
 
-        return render_template("transaction_with_user.html",message = "Transaction added successfully")
+        return redirect("/transaction_tables")
         
     elif form.errors:
         print(form.errors.items())
-    return render_template("transaction_with_user.html", form = form)
+    return render_template("transaction.html", form_user = form)
 
 @app.route('/transaction_with_user_list')
 def transaction_with_user_list():

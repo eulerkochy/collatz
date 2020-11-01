@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+ 
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../static/assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link href="../static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/assets/libs/css/style.css">
+        <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../static/assets/vendor/charts/chartist-bundle/chartist.css">
+        <link rel="stylesheet" href="../static/assets/vendor/charts/morris-bundle/morris.css">
+        <link rel="stylesheet" href="../static/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../static/assets/vendor/charts/c3charts/c3.css">
+        <link rel="stylesheet" href="../static/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+        <title>Collatz - A Sustainability Dashboard</title>
+    </head>
+    
+<body>
+    <!-- Warehouse modal -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    
+                        <h5 class="card-header">Inventory bought</h5>
+                        <div class="card-body">
+                            {%if form_input_by_garment_assembler%}
+                            <form action="{{url_for('input_by_garment_assembler')}}" method="POST" style="padding:5px;">
+    
+                                <!-- transaction_id Field -->
+                                {{ form_input_by_garment_assembler.transaction_id.label }}: <br>
+                                {{ form_input_by_garment_assembler.transaction_id(class="form-control") }}
+                                <br>
+                                {% if form_input_by_garment_assembler.transaction_id.errors %}
+                                {% for error in form_input_by_garment_assembler.transaction_id.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+    
+                                {{ form_input_by_garment_assembler.csrf_token }}
+                                {{ form_input_by_garment_assembler.submit(class="btn btn-primary") }}
+    
+    
+    
+                            </form>
+                            {%endif%}
+
+                                {%if form_input_by_retailer%}
+                                <form action="{{url_for('input_by_retailer')}}" method="POST" style="padding:5px;">
+                            
+                                    <!-- transaction_id Field -->
+                                    {{ form_input_by_retailer.transaction_id.label }}: <br>
+                                    {{ form_input_by_retailer.transaction_id(class="form-control") }}
+                                    <br>
+                                    {% if form_input_by_retailer.transaction_id.errors %}
+                                    {% for error in form_input_by_retailer.transaction_id.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    <br>
+                                    {% endfor %}
+                                    {% endif %}
+                            
+                                    {{ form_input_by_retailer.csrf_token }}
+                                    {{ form_input_by_retailer.submit(class="btn btn-primary") }}
+                            
+                            
+                            
+                                </form>
+                                {%endif%}
+                        </div>
+
+    
+                    </div>
+                </div>
+    
+    
+            </div>
+        </div>
+    </div>
+    <!-- End warehouse modal -->
+    
+    <!-- start of finished goods -->
+    <div class="modal fade bd-example-modal-lg finishedgoods" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    
+                        <h5 class="card-header">Transaction Details of Garments</h5>
+                        <div class="card-body">
+                            {%if form_retailer%}
+                            <form action="{{url_for('transaction_with_retailer')}}" method="POST" style="padding:5px;">
+                                {{ form_retailer.garment_id.label }}: <br>
+                                {{ form_retailer.garment_id(class="form-control") }}
+                                <br>
+                                {% if form_retailer.garment_id.errors %}
+                                {% for error in form_retailer.garment_id.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+    
+                                <!-- quantity_sold Field -->
+                                {{ form_retailer.quantity_sold.label }}: <br>
+                                {{ form_retailer.quantity_sold(class="form-control") }}
+                                <br>
+                                {% if form_retailer.quantity_sold.errors %}
+                                {% for error in form_retailer.quantity_sold.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+
+                                {{ form_retailer.sold_to.label }}: <br>
+                                {{ form_retailer.sold_to(class="form-control") }}
+                                <br>
+                                {% if form_retailer.sold_to.errors %}
+                                {% for error in form_retailer.sold_to.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+    
+                                <!-- selling_price_per_unit Field -->
+                                {{ form_retailer.selling_price_per_unit.label }}: <br>
+                                {{ form_retailer.selling_price_per_unit(class="form-control") }}
+                                <br>
+                                {% if form_retailer.selling_price_per_unit.errors %}
+                                {% for error in form_retailer.selling_price_per_unit.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+    
+                                <!-- rebate field Field -->
+                                {{ form_retailer.rebate.label }}: <br>
+                                {{ form_retailer.rebate(class="form-control") }}
+                                <br>
+                                {% if form_retailer.rebate.errors %}
+                                {% for error in form_retailer.rebate.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+    
+                                {{ form_retailer.csrf_token }}
+                                {{ form_retailer.submit(class="btn btn-primary") }}
+    
+                            </form>
+                            {% endif %}
+                            
+                            {%if form_user%}
+                            <form action="{{url_for('transaction_with_user')}}" method="POST" style="padding:5px;">
+                                {{ form_user.garment_id.label }}: <br>
+                                {{ form_user.garment_id(class="form-control") }}
+                                <br>
+                                {% if form_user.garment_id.errors %}
+                                {% for error in form_user.garment_id.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                                <!-- quantity_sold Field -->
+                                {{ form_user.quantity_sold.label }}: <br>
+                                {{ form_user.quantity_sold(class="form-control") }}
+                                <br>
+                                {% if form_user.quantity_sold.errors %}
+                                {% for error in form_user.quantity_sold.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                                {{ form_user.sold_to.label }}: <br>
+                                {{ form_user.sold_to(class="form-control") }}
+                                <br>
+                                {% if form_user.sold_to.errors %}
+                                {% for error in form_user.sold_to.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                                <!-- selling_price_per_unit Field -->
+                                {{ form_user.selling_price_per_unit.label }}: <br>
+                                {{ form_user.selling_price_per_unit(class="form-control") }}
+                                <br>
+                                {% if form_user.selling_price_per_unit.errors %}
+                                {% for error in form_user.selling_price_per_unit.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                                <!-- send_back Field -->
+                                {{ form_user.send_back.label }}: <br>
+                                {{ form_user.send_back(class="form-control") }}
+                                <br>
+                                {% if form_user.send_back.errors %}
+                                {% for error in form_user.send_back.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                                <!-- send_back_after_months Field -->
+                                {{ form_user.send_back_after_months.label }}: <br>
+                                {{ form_user.send_back_after_months(class="form-control") }}
+                                <br>
+                                {% if form_user.send_back_after_months.errors %}
+                                {% for error in form_user.send_back_after_months.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                                <!-- packaging_info Field -->
+                                {{ form_user.packaging_info.label }}: <br>
+                                {{ form_user.packaging_info(class="form-control") }}
+                                <br>
+                                {% if form_user.packaging_info.errors %}
+                                {% for error in form_user.packaging_info.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <br>
+                                {% endfor %}
+                                {% endif %}
+                            
+                            
+                                {{ form_user.csrf_token }}
+                                {{ form_user.submit(class="btn btn-primary") }}
+                            
+                            </form>
+                            {% endif %}
+                        </div>
+                        
+                        
+                            
+                        
+                        <!-- </div> -->
+    
+                    </div>
+                </div>
+    
+    
+            </div>
+        </div>
+    </div>
+    <!-- end of finished goods -->
+    <div class="modal fade bd-example-modal-lg inventory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel1"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    
+    
+                        <h5 class="card-header">Inventory Produced</h5>
+                        <div class="card-body" style="height:380px;overflow-y:scroll;">
+    
+                            {% if form_garment %}
+                            <form action="{{url_for('garment_produced')}}" method="POST">
+                                <div class="form-group">
+                                    {{ form_garment.garment_name.label }}:
+                                    {{ form_garment.garment_name(class="form-control") }}
+                                    {% if form_garment.garment_name.errors %}
+                                    {% for error in form_garment.garment_name.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.number_fabrics_used.label }}:
+                                    {{ form_garment.number_fabrics_used(class="form-control") }}
+                                    {% if form_garment.number_fabrics_used.errors %}
+                                    {% for error in form_garment.number_fabrics_used.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.fabric1_id.label }}:
+                                    {{ form_garment.fabric1_id(class="form-control") }}
+                                    {% if form_garment.fabric1_id.errors %}
+                                    {% for error in form_garment.fabric1_id.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.fabric1_weight_used.label }}:
+                                    {{ form_garment.fabric1_weight_used(class="form-control") }}
+                                    {% if form_garment.fabric1_weight_used.errors %}
+                                    {% for error in form_garment.fabric1_weight_used.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.fabric1_weight_wasted.label }}: <br>
+                                    {{ form_garment.fabric1_weight_wasted(class="form-control") }}
+                                    <br>
+                                    {% if form_garment.fabric1_weight_wasted.errors %}
+                                    {% for error in form_garment.fabric1_weight_wasted.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    <br>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.fabric2_id.label }}:
+                                    {{ form_garment.fabric2_id(class="form-control") }}
+                                    {% if form_garment.fabric2_id.errors %}
+                                    {% for error in form_garment.fabric2_id.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.fabric2_weight_used.label }}:
+                                    {{ form_garment.fabric2_weight_used(class="form-control") }}
+                                    {% if form_garment.fabric2_weight_used.errors %}
+                                    {% for error in form_garment.fabric2_weight_used.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.fabric2_weight_wasted.label }}:
+                                    {{ form_garment.fabric2_weight_wasted(class="form-control") }}
+                                    {% if form_garment.fabric2_weight_wasted.errors %}
+                                    {% for error in form_garment.fabric2_weight_wasted.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.trimming_technique.label }}:
+                                    {{ form_garment.trimming_technique(class="form-control") }}
+                                    {% if form_garment.trimming_technique.errors %}
+                                    {% for error in form_garment.trimming_technique.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.sewing_technique.label }}:
+                                    {{ form_garment.sewing_technique(class="form-control") }}
+                                    {% if form_garment.sewing_technique.errors %}
+                                    {% for error in form_garment.sewing_technique.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.printing_technique.label }}:
+                                    {{ form_garment.printing_technique(class="form-control") }}
+                                    {% if form_garment.printing_technique.errors %}
+                                    {% for error in form_garment.printing_technique.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.chemical_finish.label }}:
+                                    {{ form_garment.chemical_finish(class="form-control") }}
+                                    {% if form_garment.chemical_finish.errors %}
+                                    {% for error in form_garment.chemical_finish.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.screen_printing_or_heat_transfer.label }}:
+                                    {{ form_garment.screen_printing_or_heat_transfer(class="form-control") }}
+                                    {% if form_garment.screen_printing_or_heat_transfer.errors %}
+                                    {% for error in form_garment.screen_printing_or_heat_transfer.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.quantity_produced.label }}:
+                                    {{ form_garment.quantity_produced(class="form-control") }}
+                                    {% if form_garment.quantity_produced.errors %}
+                                    {% for error in form_garment.quantity_produced.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    {{ form_garment.production_cost_per_unit.label }}:
+                                    {{ form_garment.production_cost_per_unit(class="form-control") }}
+                                    {% if form_garment.production_cost_per_unit.errors %}
+                                    {% for error in form_garment.production_cost_per_unit.errors %}
+                                    <b style="color:tomato;"> {{ error }} </b>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+    
+                                {{ form_garment.csrf_token }}
+                                {{ form_garment.submit(class="btn btn-primary") }}
+    
+                            </form>
+                            {% endif %}
+                        </div>
+    
+    
+                    </div>
+                </div>
+    
+    
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="{{url_for('index')}}">Collatz</a>
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> -->
+
+
+                <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 64em;" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Warehouse Details</button>
+                <div class="dropdown-menu" aria-labelledby="Warehousedetails" style="margin-left: 79em;">
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
+                        data-target=".bd-example-modal-lg">Inventory Purchased</a>
+                    <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal"
+                        data-target=".inventory">Inventory Produced</a>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1em;" aria-haspopup="true"
+                    aria-expanded="false" data-toggle="modal" data-target=".finishedgoods">Transaction Details</button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="..static/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                                <div class="nav-user-info">
+                                    <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                                    <span class="status"></span><span class="ml-2">Available</span>
+                                </div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                                <a class="dropdown-item" href="{{url_for('index')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    
+    <div class="nav-left-sidebar sidebar-dark">
+        <div class="menu-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-divider">
+                            Menu
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{url_for('index')}}" ><i class="fa fa-fw fa-chart-pie"></i>Performance Summary <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{url_for('leaderboard')}}" ><i class="fa fa-fw fa-chart-line"></i>Leaderboard <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#"><i class="fa fa-fw fa-clipboard-list"></i>Recommendations <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#"><i class="fa fa-fw fa-address-book"></i>Contacts <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="{{url_for('transaction_tables')}}"><i class="fa fa-fw fa-handshake"></i>Inventory and Transactions <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#"><i class="fa fa-fw fa-leaf"></i>Learn to Sustain <span class="badge badge-success">6</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="dashboard-wrapper">
+        <div class="row"></div>    
+        <div class="row">
+                <!-- ============================================================== -->
+                <!-- basic table  -->
+                <!-- ============================================================== -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <nav style="margin-top: 5rem;">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        {% if fabrics_owned%}
+                          <a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="1" aria-selected="true">Fabrics Purchased</a>
+                          <a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#2" role="tab" aria-controls="2" aria-selected="false">Garments Produced</a>
+                          <a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">Sales</a>
+                        {%endif%}
+                        {% if garments_owned%}
+                        <a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="1"
+                            aria-selected="true">Garments Purchased</a>
+                        <a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3"
+                            aria-selected="false">Sales</a>
+                        {%endif%}
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="nav-1-tab" style="height: 20rem;">
+                            <!-- Garment Assembler -->
+                            {% if fabrics_owned%}
+                            <div class="card">
+                                <!-- <h5 class="card-header">Fabrics Purchased</h5> -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>ID</th>
+                                                    <th>Transaction Id</th>
+                                                    <th>Fabric</th>
+                                                    <th>Number of fibres used</th>
+                                                    <th>Fibre1 Used</th>
+                                                    <th>Type of Fibre1</th>
+                                                    <th>Area bought</th>
+                                                    <th>Weight bought</th>
+                                                    <th>Weight usable</th>
+                                                    <th>Cost Price</th>
+                                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for f in fabrics_owned %}
+                                                <tr>
+                                                    <td>{{ f.row_id }}</td>
+                                                    <td>{{ f.transaction_id }}</td>
+                                                    <td>{{ f.fabric.fabric.fabric_name }}</td>
+                                                    <td>{{ f.fabric.fabric.number_fibres_used }}</td>
+                                                    <td>{{f.fabric.fabric.fibre1.fibre}}</td>
+                                                    <td>{{f.fabric.fabric.fibre1.type_of_fibre}}</td>
+                                                    <td>{{f.fabric.area}}</td>
+                                                    <td>{{f.fabric.weight}}</td>
+                                                    <td>{{f.weight_usable}}</td>
+                                                    <td>{{f.fabric.selling_price_per_unit}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>  
+                            {%endif%}
+
+                            <!-- Retailer -->
+                            {% if garments_owned%}
+                            <div class="card">
+                                <!-- <h5 class="card-header">Garments Purchased</h5> -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first">
+                                            <thead>
+                                                <tr>
+                            
+                                                    <th>id</th>
+                                                    <th>transaction id</th>
+                                                    <th>garment name</th>
+                                                    <th>cost price</th>
+                                                    <th>quantity_bought</th>
+                                                    <th>quantity_in_inventory</th>
+                                                    <th>number_fabrics_used</th>
+                                                    <th>fabric1</th>
+                                                    <th>fabric1_weight_used</th>
+                                                    <th>fabric2</th>
+                                                    <th>fabric2_weight_used</th>
+                                                    <th>trimming_technique</th>
+                                                    <th>sewing_technique</th>
+                                                    <th>printing_technique</th>
+                                                    <th>chemical_finish</th>
+                                                    <th>screen_printing_or_heat_transfer</th>
+                                                    
+                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for f in garments_owned %}
+                                                <tr>
+                                                    <td>{{ f.row_id }}</td>
+                                                    <td>{{ f.transaction_id }}</td>
+                                                    <td>{{ f.garment.garment.garment_name }}</td>
+                                                    <td>{{f.garment.selling_price_per_unit}}</td>
+                                                    <td>{{f.garment.quantity_sold}}</td><td>{{f.quantity_in_inventory}}</td>
+                                                    <td>{{ f.garment.garment.number_fabrics_used }}</td>
+                                                    <td>{{f.garment.garment.fabric1.fabric.fabric.fabric_name}}</td>
+                                                    <td>{{f.garment.garment.fabric1_weight_used}}</td>
+                                                    <td>{{f.garment.garment.fabric2.fabric.fabric.fabric_name}}</td>
+                                                    <td>{{f.garment.garment.fabric2_weight_used}}</td>
+                                                    <td>{{ f.garment.garment.trimming_technique }}</td>
+                                                    <td>{{ f.garment.garment.sewing_technique }}</td>
+                                                    <td>{{ f.garment.garment.printing_technique }}</td>
+                                                    <td>{{ f.garment.garment.chemical_finish }}</td>
+                                                    <td>{{ f.garment.garment.screen_printing_or_heat_transfer }}</td>
+                                                    
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            {%endif%}
+                        </div>
+                        <!-- Garment Assembler -->
+                        {%if garments_produced%}
+                        <div class="tab-pane fade" id="2" role="tabpanel" aria-labelledby="nav-2-tab" style="height: 28rem;">
+                            <div class="card">
+                                <!-- <h5 class="card-header">Garments Produced</h5> -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>id</th>
+                                                    <th>garment_name</th>
+                                                    <th>number_fabrics_used</th>
+                                                    <th>fabric1_id</th>
+                                                    <th>fabric1</th>
+                                                    <th>fabric1_weight_used</th>
+                                                    <th>fabric1_weight_wasted</th>
+                                                    <th>fabric2_id</th>
+                                                    <th>fabric2</th>
+                                                    <th>fabric2_weight_used</th>
+                                                    <th>fabric2_weight_wasted</th>
+                                                    <th>trimming_technique</th>
+                                                    <th>sewing_technique</th>
+                                                    <th>printing_technique</th>
+                                                    <th>chemical_finish</th>
+                                                    <th>screen_printing_or_heat_transfer</th>
+                                                    <th>quantity_produced</th>
+                                                    <th>quantity_in_inventory</th>
+                                                    <th>production_cost_per_unit</th>
+                                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for f in garments_produced %}
+                                                <tr>
+                                                    <td>{{ f.row_id }}</td>
+                                                    <td>{{ f.garment_name }}</td>
+                                                    <td>{{ f.number_fabrics_used }}</td>
+                                                    <td>{{ f.fabric1_id }} </td>
+                                                    <td>{{ f.fabric1.fabric.fabric.fabric_name }}</td>
+                                                    <td>{{ f.fabric1_weight_used }}</td>
+                                                    <td>{{ f.fabric1_weight_wasted }}</td>
+                                                    <td>{{ f.fabric2_id }} </td>
+                                                    <td>{{ f.fabric2.fabric.fabric.fabric_name }}</td>
+                                                    <td>{{ f.fabric2_weight_used }}</td>
+                                                    <td>{{ f.fabric2_weight_wasted }}</td>
+                                                    <td>{{ f.trimming_technique }}</td>
+                                                    <td>{{ f.sewing_technique }}</td>
+                                                    <td>{{ f.printing_technique }}</td>
+                                                    <td>{{ f.chemical_finish }}</td>
+                                                    <td>{{ f.screen_printing_or_heat_transfer }}</td>
+                                                    <td>{{ f.quantity_produced }}</td>
+                                                    <td>{{ f.quantity_in_inventory }}</td>
+                                                    <td>{{ f.production_cost_per_unit }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                                
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="tab-pane fade" id="3" role="tabpanel" aria-labelledby="nav-3-tab" style="height: 28rem;">
+                            {%if transactions_retailer%}
+                            <div class="card">
+                                <!-- <h5 class="card-header">Sales</h5> -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>id</th>
+                                                    <th>garment id</th>
+                                                    <th>quantity_sold</th>
+                                                    <th>buyer id</th>
+                                                    <th>selling_price_per_unit</th>
+                                                    <th>rebate</th>
+                                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for f in transactions_retailer %}
+                                                <tr>
+                                                    <td>{{ f.row_id }}</td>
+                                                    <td>{{ f.garment_id }}</td>
+                                                    <td>{{f.quantity_sold}}</td>
+                                                    <td>{{f.sold_to}}</td>
+                                                    <td>{{f.selling_price_per_unit}}</td>
+                                                    <td>{{f.rebate}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            
+                            {%if transactions_user%}
+                            <div class="card">
+                                <!-- <h5 class="card-header">Table 3</h5> -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered first">
+                                            <thead>
+                                                <tr>
+                            
+                                                    <th>id</th>
+                                                    <th>garment id</th>
+                                                    <th>quantity_sold</th>
+                                                    <th>buyer id</th>
+                                                    <th>selling_price_per_unit</th>
+                                                    <th>send_back</th>
+                                                    <th>send_back_after_months</th>
+                                                    <th>packaging_info</th>
+                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for f in transactions_user %}
+                                                <tr>
+                                                    <td>{{ f.row_id }}</td>
+                                                    <td>{{ f.garment_id }}</td>
+                                                    <td>{{f.quantity_sold}}</td>
+                                                    <td>{{f.sold_to}}</td>
+                                                    <td>{{f.send_back_after_months}}</td>
+                                                    <td>{{f.packaging_info}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                                
+                        </div>
+                            
+                        
+                    </div>
+                    
+                    
+                </div>
+                <!-- ============================================================== -->
+                <!-- end basic table  -->
+                <!-- ============================================================== -->
+            </div>
+            
+        </div>
+        
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+    </div>
+    
+    
+    <script src="../static/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="../static/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="../static/assets/libs/js/main-js.js"></script>
+    <!-- chart chartist js -->
+    <script src="../static/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="../static/assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
+    <script src="../static/assets/vendor/charts/charts-bundle/chartjs.js"></script>
+    <!-- sparkline js -->
+    <script src="../static/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <!-- morris js -->
+    <script src="../static/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="../static/assets/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- chart c3 js -->
+    <script src="../static/assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="../static/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="../static/assets/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="../static/assets/libs/js/dashboard-ecommerce.js"></script>
+</body>
+</html>
+
