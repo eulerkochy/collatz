@@ -33,6 +33,8 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{{url_for('index')}}">Collatz</a>
+
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -76,7 +78,7 @@
                                 <a class="nav-link" href="{{url_for('index')}}" ><i class="fa fa-fw fa-chart-pie"></i>Performance Summary <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="{{url_for('leaderboard')}}" ><i class="fa fa-fw fa-chart-line"></i>Leaderboard <span class="badge badge-success">6</span></a>
+                                <a class="nav-link" href="{{url_for('leaderboard')}}" ><i class="fa fa-fw fa-chart-line"></i>Leaderboard <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" ><i class="fa fa-fw fa-clipboard-list"></i>Recommendations <span class="badge badge-success">6</span></a>
@@ -88,7 +90,7 @@
                                 <a class="nav-link" href="{{url_for('transaction_tables')}}" ><i class="fa fa-fw fa-handshake"></i>Inventory and Transactions <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#" ><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span class="badge badge-success">6</span></a>
+                                <a class="nav-link active" href="{{url_for('waste_statistic')}}" ><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="#" ><i class="fa fa-fw fa-leaf"></i>Learn to Sustain <span class="badge badge-success">6</span></a>
@@ -107,105 +109,124 @@
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content ">
                 <div class="row">
-                    <!-- metric -->
+                    <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12"></div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header text-center">Organic Waste vs Inorganic Waste Produced</h5>
+                            <div class="card-body">
+                                <div class="ct-chart-category ct-golden-section" style="height: 50%;"></div>
+                                <div class="text-center m-t-40">
+                                    <span class="legend-item mr-3">
+                                            <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full " style="color:#005fa3"></i></span>
+                                            <span class="legend-text">High</span>
+                                    </span>
+                                    <span class="legend-item mr-3">
+                                        <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#61b7e8"></i></span>
+                                    <span class="legend-text">Medium</span>
+                                    </span>
+                                    <span class="legend-item mr-3">
+                                        <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#d5e9f5"></i></span>
+                                    <span class="legend-text">Low</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                         <div class="card border-3 border-top border-top-primary">
                             <div class="card-body">
                                 <div class="d-inline-block">
-                                    <h5 class="text-primary">Profitability</h5>
-                                    <h2 class="mb-0"> 15000.00</h2>
+                                    <h5 class="text-primary text-center">Total Production vs Total Waste</h5>
+                                    <h2 class="mb-0"> 1500</h2>
                                 </div>
                                 <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
                                     <i class="fa fa-money-bill-alt fa-fw fa-sm text-danger"></i>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- /. metric -->
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="card border-3 border-top border-top-primary">
+                            
                             <div class="card-body">
                                 <div class="d-inline-block">
-                                    <h5 class="text-primary">Sustainability</h5>
-                                    <h2 class="mb-0"> 97%</h2>
+                                    <h5 class="text-primary">Organic Waste in (Kgs):</h5>
+                                    <h2 class="mb-0"> 1500</h2>
                                 </div>
-                                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
-                                    <i class="fa fa-leaf fa-fw fa-sm text-success"></i>
-                                </div>
+                                
                             </div>
-                        </div>
-                    </div>
-                    <!-- /. metric -->
-                    <!-- metric -->
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                        <div class="card border-3 border-top border-top-primary">
+                            
                             <div class="card-body">
                                 <div class="d-inline-block">
-                                    <h5 class="text-primary">Volume Sales</h5>
-                                    <h2 class="mb-0"> 19000</h2>
+                                    <h5 class="text-primary">Inorganic Waste in (Kgs):</h5>
+                                    <h2 class="mb-0"> 1500</h2>
                                 </div>
-                                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
-                                    <i class="fa fa-box fa-fw fa-sm text-primary"></i>
-                                </div>
+                                
                             </div>
+                            
+                            
                         </div>
                     </div>
-                    <!-- /. metric -->
+                    <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12"></div>
+
+                    
                 </div>
                 <div class="row">
-                    <!-- ============================================================== -->
-                    <!-- basic table  -->
-                    <!-- ============================================================== -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12"></div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Team</h5>
+                            <h5 class="card-header text-center">Waste Produced vs Waste Reused/Recycled</h5>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
-                                        <thead>
-                                            <tr>
-                                                
-                                                <th>Name</th>
-                                                <th>Profitability</th>
-                                                <th>Sustainability</th>
-                                                <th>Volume Sales</th>
-                                                <th>Profiabilty Index</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><i class="fa fa-fw fa-caret-up text-success"></i>Rahul</td>
-                                                <td>10000</td>
-                                                <td>185</td>
-                                                <td>9000</td>
-                                                <td>9.8</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa fa-fw fa-caret-down text-danger"></i>Seema</td>
-                                                <td>5000</td>
-                                                <td>200</td>
-                                                <td>5000</td>
-                                                <td>9.6</td>
-                                            </tr>
-                                        </tbody>
-                                        <!-- <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> -->
-                                    </table>
-                                </div>
-                            </div>
+                                <div class="ct-chart-category-1 ct-golden-section" style="height: 50%;"></div>
+                                <div class="text-center m-t-40">
+                                    <span class="legend-item mr-3">
+                                            <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full " style="color:#005fa3"></i></span>
+                                            <span class="legend-text">High</span>
+                                    </span>
+                                    <span class="legend-item mr-3">
+                                        <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#61b7e8"></i></span>
+                                    <span class="legend-text">Medium</span>
+                                    </span>
+                                    <span class="legend-item mr-3">
+                                        <span class="fa-xs text-info mr-1 legend-tile"><i class="fa fa-fw fa-square-full" style="color:#d5e9f5"></i></span>
+                                    <span class="legend-text">Low</span>
+                                    </span>
+                                </div> 
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- end basic table  -->
-                    <!-- ============================================================== -->
+                </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                        <div class="card border-3 border-top border-top-primary">
+                            <div class="card-body">
+                                <div class="d-inline-block">
+                                    <h5 class="text-primary">Waste Produced (Kgs)</h5>
+                                    <h2 class="mb-0"> 15000</h2>
+                                </div>
+                                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                    <i class="fa fa-money-bill-alt fa-fw fa-sm text-danger"></i>
+                                </div>
+
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="d-inline-block">
+                                    <h5 class="text-primary">Waste Reused/Recycled (Kgs)</h5>
+                                    <h2 class="mb-0"> 15000</h2>
+                                </div>
+                                
+                            </div>
+
+                            <div class="card-body">
+                                <div class="d-inline-block">
+                                    <h5 class="text-primary">Number of Brands doing better</h5>
+                                    <h2 class="mb-0"> 15000</h2>
+                                </div>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12"></div>
+
+                    
                 </div>
                 
             </div>

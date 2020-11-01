@@ -23,9 +23,91 @@
     </head>
     
 <body>
+    <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" href="{{url_for('index')}}">Collatz</a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button> -->
+            <a class="" href="{{url_for('home')}}" style="margin-left: 10rem;">ContactUs</a>
+            <a class="" href="{{url_for('home')}}" style="margin-left: 10rem;">Platform</a>
+            <a class="" href="{{url_for('home')}}" style="margin-left: 10rem;">AboutUs</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"
+                style="margin-left: 35rem;">Join Us</button>
     
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Join Us</button>
+    
+    
+        </nav>
+    </div>
 
+    
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Join Us</button> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="row">
+                        <div class="rounded-circle cover-image1"></div>
+                </div>
+                <div class="row">
+                <div class="col-2">
+
+                </div>
+                        <div class="col-8" style="margin-top: 2rem;">Fabric Manufacturer</div>
+                <div class="col-2">
+                
+                </div>
+                </div>
+    
+    
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="rounded-circle cover-image2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+            
+                    </div>
+                    <div class="col-8" style="margin-top: 2rem;">Garment Assembler</div>
+                    <div class="col-2">
+            
+                    </div>
+                </div>
+    
+    
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="rounded-circle cover-image3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+            
+                    </div>
+                    <div class="col-4" style="margin-top: 2rem;">Retailer</div>
+                    <div class="col-4">
+            
+                    </div>
+                </div>
+    
+    
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="rounded-circle cover-image4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+            
+                    </div>
+                    <div class="col-4" style="margin-top: 2rem;">User</div>
+                    <div class="col-4">
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade bd-example-modal-lg"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg mw-95 w-75">
         <div class="modal-content">
@@ -34,7 +116,7 @@
                 <div class="card" style="width: 10rem;margin-left: 2rem;margin-top: 2rem;height: 13rem;">
                     <img class="card-img-top" src="../static/assets/images/noun_textile_2114402 1.png" alt="Card image cap">
                     <div class="card-body">
-                    <p class="card-text">Raw Material Manufacturer</p>
+                    <p class="card-text">Fabric Manufacturer</p>
                     </div>
                 </div>
                 </div>
@@ -42,7 +124,7 @@
                 <div class="card" style="width: 10rem;margin-left: 1rem;margin-top: 2rem;height: 13rem;">
                     <img class="card-img-top" src="../static/assets/images/noun_garment_3370225 1.png" alt="Card image cap">
                     <div class="card-body">
-                    <p class="card-text">Brand Assembley</p>
+                    <p class="card-text">Garment Assembler</p>
                     </div>
                 </div>
                 </div>

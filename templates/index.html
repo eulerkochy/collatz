@@ -64,7 +64,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="{{url_for('index')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="{{url_for('logout')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -112,7 +112,7 @@
                                         class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="#"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span
+                                <a class="nav-link" href="{{url_for('waste_statistic')}}"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span
                                         class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item ">
