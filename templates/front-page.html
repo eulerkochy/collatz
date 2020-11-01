@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+ 
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../static/assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link href="../static/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/assets/libs/css/style.css">
+        <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../static/assets/vendor/charts/chartist-bundle/chartist.css">
+        <link rel="stylesheet" href="../static/assets/vendor/charts/morris-bundle/morris.css">
+        <link rel="stylesheet" href="../static/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../static/assets/vendor/charts/c3charts/c3.css">
+        <link rel="stylesheet" href="../static/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="../static/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+        <title>Collatz - A Sustainability Dashboard</title>
+    </head>
+    
+<body>
+    
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Join Us</button>
+
+    <div class="modal fade bd-example-modal-lg"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg mw-95 w-75">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-md-3">
+                <div class="card" style="width: 10rem;margin-left: 2rem;margin-top: 2rem;height: 13rem;">
+                    <img class="card-img-top" src="../static/assets/images/noun_textile_2114402 1.png" alt="Card image cap">
+                    <div class="card-body">
+                    <p class="card-text">Raw Material Manufacturer</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card" style="width: 10rem;margin-left: 1rem;margin-top: 2rem;height: 13rem;">
+                    <img class="card-img-top" src="../static/assets/images/noun_garment_3370225 1.png" alt="Card image cap">
+                    <div class="card-body">
+                    <p class="card-text">Brand Assembley</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card" style="width: 10rem;margin-left: 1rem;margin-top: 2rem;height: 13rem;">
+                    <img class="card-img-top" src="../static/assets/images/shopping-cart.png" alt="Card image cap">
+                    <div class="card-body">
+                    <p class="card-text">Retailer</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card" style="width: 10rem;margin-left: 1rem;margin-top: 2rem;height: 13rem;">
+                    <img class="card-img-top" src="../static/assets/images/Rectangle 9121.png" alt="Card image cap">
+                    <div class="card-body">
+                    <p class="card-text">User</p>
+                    </div>
+                </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" href="#form1" style="margin-left: 2rem;margin-bottom: 2rem;">Proceed</button>
+        </div>
+        
+    </div>
+    
+    </div>
+    <div class="modal fade bd-example-modal-lg" id="form1" role="dialog">
+        <div class="modal-dialog modal-lg mw-95 w-80">
+            <div class="modal-content">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Sign In</a>
+                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Sign Up</a>
+                    </div>
+                </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" style="height: 25rem;">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h5 class="card-header">Login</h5>
+                                    <div class="card-body">
+                        {%if message_login%}
+                        {{message_login}}
+                        <br>
+                        {%endif%}
+                        {% if form_login %}
+                        <form action="{{url_for('login')}}" method="POST">
+
+                            <div class="form-group">
+                                {{ form_login.email.label }}: 
+                                {{ form_login.email(class="form-control") }}
+                                {% if form_login.email.errors %}
+                                {% for error in form_login.email.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <!-- <br> -->
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form_login.password.label }}:
+                                {{ form_login.password(class="form-control") }}
+                                {% if form_login.password.errors %}
+                                {% for error in form_login.password.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <!-- <br> -->
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class = "form-group">
+                                {{ form_login.type.label }}:
+                                {{ form_login.type(class="form-control") }}
+                                {% if form_login.type.errors %}
+                                {% for error in form_login.type.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                <!-- <br> -->
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary" style="margin-left: 0.5rem;margin-bottom: 2rem;">Submit</button> -->
+                            {{ form_login.csrf_token }}
+                            {{ form_login.submit(class="btn btn-primary") }}
+                        </form>
+                        {% endif %}
+                            </div>
+                        </div></div></div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style="height: 28rem;">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h5 class="card-header">Register</h5>
+                                    <div class="card-body" style="height:380px;overflow-y:scroll;">
+                        {% if form %}
+                        <form action="{{url_for('signup')}}" method="POST">
+
+                            <div class="form-group">
+                                {{ form.name_of_company.label }}:
+                                {{ form.name_of_company(class="form-control") }}
+                                {% if form.name_of_company.errors %}
+                                {% for error in form.name_of_company.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.stakeholder_type.label }}: 
+                                {{ form.stakeholder_type(class="form-control") }}
+                                {% if form.stakeholder_type.errors %}
+                                {% for error in form.stakeholder_type.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.contact_number.label }}: 
+                                {{ form.contact_number(class="form-control") }}
+                                {% if form.contact_number.errors %}
+                                {% for error in form.contact_number.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.address.label }}: 
+                                {{ form.address(class="form-control") }}
+                                {% if form.address.errors %}
+                                {% for error in form.address.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email.label }}: 
+                                {{ form.email(class="form-control") }}
+                                {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.password.label }}: 
+                                {{ form.password(class="form-control") }}
+                                {% if form.password.errors %}
+                                {% for error in form.password.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.confirm_password.label }}: 
+                                {{ form.confirm_password(class="form-control") }}
+                                {% if form.confirm_password.errors %}
+                                {% for error in form.confirm_password.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.year_of_estab.label }}: 
+                                {{ form.year_of_estab(class="form-control") }}
+                                {% if form.year_of_estab.errors %}
+                                {% for error in form.year_of_estab.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            
+                            <div class = "form-group">
+                                {{ form.annual_turnover.label }}: 
+                                {{ form.annual_turnover(class="form-control") }}
+                                {% if form.annual_turnover.errors %}
+                                {% for error in form.annual_turnover.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class = "form-group">
+                                {{ form.employee_strength.label }}: 
+                                {{ form.employee_strength(class="form-control") }}
+                                {% if form.employee_strength.errors %}
+                                {% for error in form.employee_strength.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.poc1_name.label }}: 
+                                {{ form.poc1_name(class="form-control") }}
+                                {% if form.poc1_name.errors %}
+                                {% for error in form.poc1_name.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class = "form-group">
+                                {{ form.poc1_contact_number.label }}: 
+                                {{ form.poc1_contact_number(class="form-control") }}
+                                {% if form.poc1_contact_number.errors %}
+                                {% for error in form.poc1_contact_number.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class = "form-group">
+                                {{ form.poc1_email.label }}: 
+                                {{ form.poc1_email(class="form-control") }}
+                                {% if form.poc1_email.errors %}
+                                {% for error in form.poc1_email.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class = "form-group">
+                                {{ form.poc1_designation.label }}: 
+                                {{ form.poc1_designation(class="form-control") }}
+                                {% if form.poc1_designation.errors %}
+                                {% for error in form.poc1_designation.errors %}
+                                <b style="color:tomato;"> {{ error }} </b>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                            {{ form.csrf_token }}
+                            {{ form.submit(class="btn btn-primary") }}
+                        </form>
+                        {% endif %}
+                            </div>
+                        </div>
+                    
+                    </div>
+                  </div>
+              
+            </div>
+        </div>
+    </div></div>
+
+<!-- Small modal -->
+    
+    <script src="../static/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="../static/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="../static/assets/libs/js/main-js.js"></script>
+    <!-- chart chartist js -->
+    <script src="../static/assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="../static/assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
+    <script src="../static/assets/vendor/charts/charts-bundle/chartjs.js"></script>
+    <!-- sparkline js -->
+    <script src="../static/assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <!-- morris js -->
+    <script src="../static/assets/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="../static/assets/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- chart c3 js -->
+    <script src="../static/assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="../static/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="../static/assets/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="../static/assets/libs/js/dashboard-ecommerce.js"></script>
+</body>
+ 
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+</head>
+
+<body>
+    <div>
+        <ul style="list-style-type: none;float: right;font-size: large;">
+            <li style="display:inline"><a href="{{url_for('home')}}">Home</a></li>
+            {% if 'user' in session %}
+            <li style="display:inline"><a href="{{url_for('logout')}}">Log Out</a></li>
+            <li style="display:inline"><a href="{{url_for('input_fibre')}}">Add Fibre</a></li>
+            <li style="display:inline"><a href="{{url_for('fibres_list')}}">List Fibres</a></li>
+            <li style="display:inline"><a href="{{url_for('fabric_produced')}}">Add Fabric Produced</a></li>
+            <li style="display:inline"><a href="{{url_for('fabric_produced_list')}}">fabric_produced_list</a></li>
+            <li style="display:inline"><a href="{{url_for('transaction_with_garment_assembler')}}">transaction_with_garment_assembler</a></li>
+            <li style="display:inline"><a href="{{url_for('transaction_with_garment_assembler_list')}}">transaction_with_garment_assembler_list</a></li>
+            <li style="display:inline"><a href="{{url_for('input_by_garment_assembler')}}">input_by_garment_assembler</a></li>
+            <li style="display:inline"><a href="{{url_for('fabrics_owned_list')}}">fabrics_owned_list</a></li>
+            <li style="display:inline"><a href="{{url_for('garment_produced')}}">garment_produced</a></li>
+            <li style="display:inline"><a href="{{url_for('garment_produced_list')}}">garment_produced_list</a></li>
+            <li style="display:inline"><a href="{{url_for('transaction_with_retailer')}}">transaction_with_retailer</a></li>
+            <li style="display:inline"><a href="{{url_for('transaction_with_retailer_list')}}">transaction_with_retailer_list</a></li>
+            <li style="display:inline"><a href="{{url_for('input_by_retailer')}}">input_by_retailer</a></li>
+            <li style="display:inline"><a href="{{url_for('garments_owned_list')}}">garments_owned_list</a></li>
+            <li style="display:inline"><a href="{{url_for('transaction_with_user')}}">transaction_with_user</a></li>
+            <li style="display:inline"><a href="{{url_for('transaction_with_user_list')}}">transaction_with_user_list</a></li>
+            {% else %}
+            <li style="display:inline"><a href="{{url_for('signup_user')}}">User Sign Up</a></li>
+            <li style="display:inline"><a href="{{url_for('signup')}}">Others Sign Up</a></li>
+            <li style="display:inline"><a href="{{url_for('login')}}">Login</a></li>
+            {% endif%}
+        </ul>
+    </div>
+    <h1 id="title"> {% block heading %} {% endblock %} </h1>
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+
+</html>

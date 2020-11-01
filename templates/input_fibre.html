@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+Input Fibre
+{% endblock %}
+
+{% block heading %}
+Input Fibre
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('input_fibre')}}" method="POST" style="padding:5px;">
+
+    <!-- Source Location Field -->
+    {{ form.source_location.label }}: <br>
+    {{ form.source_location }}
+    <br>
+    {% if form.source_location.errors %}
+    {% for error in form.source_location.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- manufacturer Field -->
+    {{ form.manufacturer.label }}: <br>
+    {{ form.manufacturer }}
+    <br>
+    {% if form.manufacturer.errors %}
+    {% for error in form.manufacturer.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- contact_of_manufacturer field Field -->
+    {{ form.contact_of_manufacturer.label }}: <br>
+    {{ form.contact_of_manufacturer }}
+    <br>
+    {% if form.contact_of_manufacturer.errors %}
+    {% for error in form.contact_of_manufacturer.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fibre field Field -->
+    {{ form.fibre.label }}: <br>
+    {{ form.fibre }}
+    <br>
+    {% if form.fibre.errors %}
+    {% for error in form.fibre.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- weight field Field -->
+    {{ form.weight.label }}: <br>
+    {{ form.weight }}
+    <br>
+    {% if form.weight.errors %}
+    {% for error in form.weight.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- cost per unit field Field -->
+    {{ form.cost_per_unit.label }}: <br>
+    {{ form.cost_per_unit }}
+    <br>
+    {% if form.cost_per_unit.errors %}
+    {% for error in form.cost_per_unit.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- rebate field Field -->
+    {{ form.rebate.label }}: <br>
+    {{ form.rebate }}
+    <br>
+    {% if form.rebate.errors %}
+    {% for error in form.rebate.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- type_of_fibre field Field -->
+    {{ form.type_of_fibre.label }}: <br>
+    {{ form.type_of_fibre }}
+    <br>
+    {% if form.type_of_fibre.errors %}
+    {% for error in form.type_of_fibre.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}

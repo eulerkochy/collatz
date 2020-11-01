@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+Fabric Produced
+{% endblock %}
+
+{% block heading %}
+Fabric Produced
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('fabric_produced')}}" method="POST" style="padding:5px;">
+
+    <!-- fabric_name Field -->
+    {{ form.fabric_name.label }}: <br>
+    {{ form.fabric_name }}
+    <br>
+    {% if form.fabric_name.errors %}
+    {% for error in form.fabric_name.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- number_fibres_used Field -->
+    {{ form.number_fibres_used.label }}: <br>
+    {{ form.number_fibres_used }}
+    <br>
+    {% if form.number_fibres_used.errors %}
+    {% for error in form.number_fibres_used.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fibre1_id Field -->
+    {{ form.fibre1_id.label }}: <br>
+    {{ form.fibre1_id }}
+    <br>
+    {% if form.fibre1_id.errors %}
+    {% for error in form.fibre1_id.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fibre1_weight_used Field -->
+    {{ form.fibre1_weight_used.label }}: <br>
+    {{ form.fibre1_weight_used }}
+    <br>
+    {% if form.fibre1_weight_used.errors %}
+    {% for error in form.fibre1_weight_used.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- fibre1_weight_wasted Field -->
+    {{ form.fibre1_weight_wasted.label }}: <br>
+    {{ form.fibre1_weight_wasted }}
+    <br>
+    {% if form.fibre1_weight_wasted.errors %}
+    {% for error in form.fibre1_weight_wasted.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- area Field -->
+    {{ form.area.label }}: <br>
+    {{ form.area }}
+    <br>
+    {% if form.area.errors %}
+    {% for error in form.area.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- weight Field -->
+    {{ form.weight.label }}: <br>
+    {{ form.weight }}
+    <br>
+    {% if form.weight.errors %}
+    {% for error in form.weight.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- production_cost_per_unit Field -->
+    {{ form.production_cost_per_unit.label }}: <br>
+    {{ form.production_cost_per_unit }}
+    <br>
+    {% if form.production_cost_per_unit.errors %}
+    {% for error in form.production_cost_per_unit.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}

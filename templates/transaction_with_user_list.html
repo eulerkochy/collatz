@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} transactions {% endblock %}
+
+{% block heading %}
+transactions
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>garment id</th>
+        <th>quantity_sold</th>
+        <th>buyer id</th>
+        <th>selling_price_per_unit</th>
+        <th>send_back</th>
+        <th>send_back_after_months</th>
+        <th>packaging_info</th>
+    </tr>
+    {% if transactions %}
+    {% for f in transactions %}
+    <tr>
+        <td>{{ f.row_id }}</td>
+        <td>{{ f.garment_id }}</td>
+        <td>{{f.quantity_sold}}</td>
+        <td>{{f.sold_to}}</td>
+        <td>{{f.send_back_after_months}}</td>
+        <td>{{f.packaging_info}}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

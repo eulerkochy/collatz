@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} Fibres {% endblock %}
+
+{% block heading %}
+Fibres
+{% endblock %}
+
+{% block content %}
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>source location</th>
+            <th>manufacturer</th>
+            <th>contact of manufacturer</th>
+            <th>fibre</th>
+            <th>weight</th>
+            <th>weight usable</th>
+            <th>cost per unit</th>
+            <th>rebate</th>
+            <th>type of fibre</th>
+            <th>owner</th>
+        </tr>
+        {% if fibres %}
+        {% for f in fibres %}
+        <tr>
+            <td>{{ f.row_id }}</td>
+            <td>{{ f.source_location }}</td>
+            <td>{{ f.manufacturer }}</td>
+            <td>{{ f.contact_of_manufacturer }} </td>
+            <td>{{ f.fibre }}</td>
+            <td>{{ f.weight }}</td>
+            <td>{{ f.weight_usable }}</td>
+            <td>{{ f.cost_per_unit }}</td>
+            <td>{{ f.rebate }}</td>
+            <td>{{ f.type_of_fibre }}</td>
+            <td>{{ owner_company }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+{% endblock %}

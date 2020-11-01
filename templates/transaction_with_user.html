@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+Input Transaction with user
+{% endblock %}
+
+{% block heading %}
+Input Transaction with user
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+{% if form %}
+<form action="{{url_for('transaction_with_user')}}" method="POST" style="padding:5px;">
+
+    <!-- garment_id Field -->
+    {{ form.garment_id.label }}: <br>
+    {{ form.garment_id }}
+    <br>
+    {% if form.garment_id.errors %}
+    {% for error in form.garment_id.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- quantity_sold Field -->
+    {{ form.quantity_sold.label }}: <br>
+    {{ form.quantity_sold }}
+    <br>
+    {% if form.quantity_sold.errors %}
+    {% for error in form.quantity_sold.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- sold_to field Field -->
+    {{ form.sold_to.label }}: <br>
+    {{ form.sold_to }}
+    <br>
+    {% if form.sold_to.errors %}
+    {% for error in form.sold_to.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- selling_price_per_unit Field -->
+    {{ form.selling_price_per_unit.label }}: <br>
+    {{ form.selling_price_per_unit }}
+    <br>
+    {% if form.selling_price_per_unit.errors %}
+    {% for error in form.selling_price_per_unit.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- send_back Field -->
+    {{ form.send_back.label }}: <br>
+    {{ form.send_back }}
+    <br>
+    {% if form.send_back.errors %}
+    {% for error in form.send_back.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- send_back_after_months Field -->
+    {{ form.send_back_after_months.label }}: <br>
+    {{ form.send_back_after_months }}
+    <br>
+    {% if form.send_back_after_months.errors %}
+    {% for error in form.send_back_after_months.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+    <!-- packaging_info Field -->
+    {{ form.packaging_info.label }}: <br>
+    {{ form.packaging_info }}
+    <br>
+    {% if form.packaging_info.errors %}
+    {% for error in form.packaging_info.errors %}
+    <b style="color:tomato;"> {{ error }} </b>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+
+    {{ form.csrf_token }}
+    {{ form.submit }}
+</form>
+{% endif %}
+{% endblock %}

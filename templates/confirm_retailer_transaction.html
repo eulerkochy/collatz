@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+Confirm details of input garment
+{% endblock %}
+
+{% block heading %}
+Confirm details of input garment
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{ message }}
+<br>
+{% endif %}
+
+    <table>
+        <tr>
+            <th>garment id</th>
+            <th>garment name</th>
+            <th>number_fabrics_used</th>
+            <th>fabric1</th>
+            <th>fabric1_weight_used</th>
+            <th>fabric2</th>
+            <th>fabric2_weight_used</th>
+            <th>trimming_technique</th>
+            <th>sewing_technique</th>
+            <th>printing_technique</th>
+            <th>chemical_finish</th>
+            <th>screen_printing_or_heat_transfer</th>
+            <th>quantity</th>
+            <th>cost price</th>
+            <th>rebate</th>
+        </tr>
+        <tr>
+            <td>{{ f.garment.garment_id }}</td>
+            <td>{{ f.garment.garment.garment_name }}</td>
+            <td>{{ f.garment.garment.number_fabrics_used }}</td>
+            <td>{{f.garment.garment.fabric1.fabric.fabric.fabric_name}}</td>
+            <td>{{f.garment.garment.fabric1_weight_used}}</td>
+            <td>{{f.garment.garment.fabric2.fabric.fabric.fabric_name}}</td>
+            <td>{{f.garment.garment.fabric2_weight_used}}</td>
+            <td>{{ f.garment.garment.trimming_technique }}</td>
+            <td>{{ f.garment.garment.sewing_technique }}</td>
+            <td>{{ f.garment.garment.printing_technique }}</td>
+            <td>{{ f.garment.garment.chemical_finish }}</td>
+            <td>{{ f.garment.garment.screen_printing_or_heat_transfer }}</td>
+            <td>{{f.garment.quantity_sold}}</td>
+            <td>{{f.garment.selling_price_per_unit}}</td>
+            <td>{{f.garment.rebate}}</td>
+        </tr>
+    </table>
+
+{% if form %}
+<form action="{{url_for('confirm_retailer_transaction')}}" method="POST" style="padding:5px;">
+
+    {{ form.csrf_token }}
+    {{ form.confirm }}
+    {{ form.cancel }}
+</form>
+{% endif %}
+{% endblock %}
