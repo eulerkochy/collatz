@@ -465,7 +465,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="..static/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../static/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
@@ -473,7 +473,7 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="{{url_for('index')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="{{url_for('logout')}}"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -509,7 +509,7 @@
                             <a class="nav-link active" href="{{url_for('transaction_tables')}}"><i class="fa fa-fw fa-handshake"></i>Inventory and Transactions <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="#"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span class="badge badge-success">6</span></a>
+                            <a class="nav-link" href="{{url_for('waste_statistic')}}"><i class="fa fa-fw fa-quidditch"></i>Waste Statistics <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="#"><i class="fa fa-fw fa-leaf"></i>Learn to Sustain <span class="badge badge-success">6</span></a>

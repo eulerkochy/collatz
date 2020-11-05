@@ -201,6 +201,10 @@ def transaction_tables():
         form_user = _form_user
     )
 
+
+@app.route("/waste_statistic")
+def waste_statistic():
+    return render_template("waste_statistic.html")
 @app.route("/")
 def home():
     _form = SignUpForm()
@@ -318,7 +322,7 @@ def login():
 def logout():
     if 'user' in session:
         session.pop('user')
-    return redirect("/home")
+    return redirect("/")
 
 @app.route('/input_fibre', methods = ['POST', 'GET'])
 def input_fibre():
