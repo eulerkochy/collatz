@@ -89,12 +89,12 @@ fabric1 = FabricProduced(
     number_fibres_used = 1,
     fibre1_id = 1,
     fibre1 = new_fibre,
-    fibre1_weight_used = 2.0,
-    fibre1_weight_wasted = 1.0,
-    area = 10.0,
-    weight = 10.0,
-    weight_in_inventory = 10.0,
-    production_cost_per_unit = 1.0,
+    fibre1_weight_used = 110.0,
+    fibre1_weight_wasted = 30.0,
+    area = 1000.0,
+    weight = 50.0,
+    weight_in_inventory = 50.0,
+    production_cost_per_unit = 1000.0,
 )
 
 fabric2 = FabricProduced(
@@ -144,6 +144,97 @@ db.session.add(trans2)
 
 new_user_f.transactions_with_garment_assembler.append(trans1)
 new_user_f.transactions_with_garment_assembler.append(trans2)
+
+input_fabric1 = InputFabric(
+    transaction_id = 1,
+    fabric = trans1,
+    weight_usable = trans1.weight,
+    owner = "g1@gmail.com"
+)
+
+input_fabric2 = InputFabric(
+    transaction_id = 2,
+    fabric = trans2,
+    weight_usable = trans2.weight,
+    owner = "g1@gmail.com"
+)
+
+db.session.add(input_fabric1)
+db.session.add(input_fabric2)
+
+new_user_g.fabrics_owned.append(input_fabric1)
+new_user_g.fabrics_owned.append(input_fabric2)
+
+garment1 = GarmentProduced(
+    producer = "g1@gamil.com",
+    garment_name = "Black shirt",
+    number_fabrics_used = 2,
+    fabric1_id = 1,
+    fabric1 = input_fabric1,
+    fabric1_weight_used = 110.0,
+    fabric1_weight_wasted = 30.0,
+
+    fabric2_id = 2,
+    fabric2 = input_fabric2,
+    fabric2_weight_used = 90,
+    fabric2_weight_wasted = 10,
+
+    trimming_technique = "Sequins",
+    sewing_technique = "Manual",
+    printing_technique = "DTG",
+    chemical_finish = "Anti-microbial",
+    screen_printing_or_heat_transfer = True,
+
+    quantity_produced = 450,
+    quantity_in_inventory = 450,
+    production_cost_per_unit = 500.0
+)
+
+db.session.add(garment1)
+
+new_user_g.garments_produced.append(garment1)
+
+garment_trans1 = TransactionWithRetailer(
+    garment_id = 1,
+    garment = garment1,
+    quantity_sold = 100,
+    sold_by = "g1@gmail.com",
+    sold_to = "r1@gmail.com",
+    selling_price_per_unit = 600.0,
+    rebate = 10.0
+)
+
+db.session.add(garment_trans1)
+
+new_user_g.transactions_with_retailer.append(garment_trans1)
+
+input_garment1 = InputGarment(
+    transaction_id = 1,
+    garment = garment_trans1,
+    quantity_in_inventory = 100,
+    owner = "r1@gmail.com"
+)
+
+db.session.add(input_garment1)
+
+new_user_r.garments_owned.append(input_garment1)
+
+user_trans1 = TransactionWithUser(
+    date_of_purchase = date(year=2020, month = 10, day = 10),
+    sold_by = "r1@gmail.com",
+    sold_to = "u1@gmail.com",
+    garment_id = 1,
+    garment = input_garment1,
+    packaging_info = "Paper packaging",
+    quantity_sold = 2,
+    selling_price_per_unit = 700,
+    send_back = False,
+    send_back_after_months = 0,
+)
+
+db.session.add(user_trans1)
+
+new_user_r.transactions_with_user.append(user_trans1)
 
 
 try:
