@@ -23,7 +23,51 @@
     </head>
     
 <body>
-    <!-- Warehouse modal -->
+    <!--  Product journey -->
+    <div class="modal fade bd-example-modal-lg productjourney" tabindex="-1" role="dialog" aria-labelledby="productjourney" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+
+            <div class="row">
+                
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    
+                    
+                    <h5 class="card-header">Product search</h5>
+                    <div class="card-body">
+                           
+            <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                        
+                        <div class="input-group mw-100 mh-100">
+                            <input type="text" class="form-control input-lg" style="width: 400px;" placeholder="Search the Product ID" aria-label="Search the Product ID" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                            <button type="button" class="btn btn-primary" id="Warehousedetails" style=""  aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".bd-example-modal-lg">Product Journey</button>
+                    </div>
+                    
+                            
+                          
+            </div>
+                    
+            </div>
+            
+            </div>
+            </div>
+                    
+                
+            </div>
+
+
+          </div>
+        </div>
+    </div>
+      
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -288,12 +332,13 @@
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
+                
+
 
                 <button type="button" class="btn btn-primary" id="Warehousedetails" style="margin-left: 70%;"  aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".bd-example-modal-lg">Warehouse Details</button>
                 
-                
-                
-                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1%;" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">Transaction Details</button>
+                <button type="button" class="btn btn-primary" id="transactiondetails" style="margin-left: 1%;" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" >Transaction Details</button>
+                <button type="button" class="btn btn-primary" id="productjourney" style="position: relative;right: 25%;" data-toggle="modal"  aria-haspopup="true" aria-expanded="false" data-target=".productjourney">Product Journey</button>
                 
                 <div class="dropdown-menu" aria-labelledby="transactiondetails" style="margin-left: 90%;">
                     <a class="dropdown-item" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target=".finishedgoods">Finished Goods</a>
